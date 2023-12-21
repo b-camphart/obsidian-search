@@ -21,9 +21,8 @@ export function parse(query: string, metadata: MetadataCache): FileFilter {
 
     let parser: Parser = new DefaultParser(metadata);
     for (const char of query) {
-        if (import.meta.env.MODE === "development") {
+        if (import.meta.env.MODE === "test") {
             debug("=== PARSING CHAR: ", char, " ===");
-            debug(util.inspect(parser, { showHidden: true, depth: null }));
         }
         const nextParser = parser.parse(char);
         if (nextParser == null) {
@@ -35,7 +34,9 @@ export function parse(query: string, metadata: MetadataCache): FileFilter {
         } else {
             parser = nextParser;
         }
-        if (import.meta.env.MODE === "development") {
+        if (import.meta.env.MODE === "test") {
+            debug("--- after: ")
+            debug(util.inspect(parser, { showHidden: true, depth: null }));
             debug("=== END CHAR PARSING ===");
         }
     }
