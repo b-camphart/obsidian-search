@@ -1,0 +1,39 @@
+{
+  "name": "obsidian-search",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.cjs",
+  "module": "dist/main.mjs",
+  "typings": "dist/main.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/main.mjs",
+      "require": "./dist/main.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "vite build",
+    "test:unit": "vitest --config test/vitest.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/b-camphart/obsidian-search"
+  },
+  "keywords": [
+    "obsidian",
+    "search"
+  ],
+  "author": "b-camphart",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "20.10.5",
+    "obsidian": "1.4.11",
+    "prettier": "^3.1.1",
+    "typescript": "5.3.3",
+    "vite": "5.0.10",
+    "vite-plugin-dts": "3.6.4",
+    "vitest": "^1.1.0"
+  }
+}
