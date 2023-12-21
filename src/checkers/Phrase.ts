@@ -1,6 +1,9 @@
 import { StringChecker } from "./StringChecker";
 
-export function phrase(phrase: string, options?: { matchCase: boolean }): StringChecker;
+export function phrase(
+    phrase: string,
+    options?: { matchCase: boolean },
+): StringChecker;
 export function phrase(phrase: TemplateStringsArray): StringChecker;
 export function phrase(
     phrase: TemplateStringsArray | string,
@@ -16,7 +19,7 @@ export class Phrase implements StringChecker {
     constructor(
         private readonly phrase: string,
 
-        private readonly matchCase: boolean = false,
+        private readonly matchCase: boolean = true,
     ) {}
 
     matches(test: string): boolean {
