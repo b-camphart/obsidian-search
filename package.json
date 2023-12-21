@@ -15,7 +15,8 @@
   },
   "scripts": {
     "build": "vite build",
-    "test:unit": "vitest --config test/vitest.config.js"
+    "test:unit": "vitest --config test/vitest.config.js",
+    "test:integration": "vite build --config integration/vite.config.js"
   },
   "repository": {
     "type": "git",

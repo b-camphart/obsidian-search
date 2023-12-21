@@ -8,52 +8,65 @@ import { DefaultSubQueryParser } from "src/parsers/subquery/DefaultSubQueryParse
 import { SubQueryParser } from "src/parsers/subquery/SubQueryParser";
 
 export function parseProperty(metadata: MetadataCache): Parser {
-    return new PropertyNameParser(metadata);
+    return new PropertyNameParser([], metadata);
 }
 
 class PropertyNameParser implements Parser {
-    private readonly checkers: StringChecker[] = [];
-    private parser: SubQueryParser = new DefaultSubQueryParser();
 
-    constructor(private readonly metadata: MetadataCache) {}
+    constructor(
+        private readonly checkers: readonly StringChecker[],
+        private readonly metadata: MetadataCache,
+        private parser: SubQueryParser = new DefaultSubQueryParser()
+    ) {}
 
     parse(char: string): Parser | null {
         if (char === `]`) {
             return null;
         }
         if (char === `:`) {
-            this.endInternalParser();
-            return new PropertyValueParser(group(this.checkers), this.metadata);
+            return new PropertyValueParser(
+                group(this.endInternalParser()),
+                this.metadata,
+            );
         }
         const next = this.parser.parse(char);
         if (next == null) {
-            this.endInternalParser();
-            this.parser = new DefaultSubQueryParser();
+            return new PropertyNameParser(
+                this.endInternalParser(),
+                this.metadata
+            )
         }
 
-        return this;
+        return new PropertyNameParser(
+            this.checkers,
+            this.metadata,
+            next
+        )
     }
 
     private endInternalParser() {
         const checker = this.parser.end();
         if (checker != null) {
-            this.checkers.push(checker);
+            return this.checkers.concat([checker]);
         }
+        return this.checkers;
     }
 
     end(): void | FileFilter<TFile> | StringChecker {
-        this.endInternalParser();
-        return new FilePropertyFilter(this.metadata, group(this.checkers));
+        return new FilePropertyFilter(
+            this.metadata,
+            group(this.endInternalParser()),
+        );
     }
 }
 
-class PropertyValueParser implements Parser {
-    private readonly checkers: StringChecker[] = [];
-    private parser: SubQueryParser = new DefaultSubQueryParser();
+class PropertyValueParser implements Parser {;
 
     constructor(
         private readonly property: StringChecker,
-        private readonly metadata: MetadataCache
+        private readonly metadata: MetadataCache,
+        private readonly checkers: readonly StringChecker[] = [],
+        private parser: SubQueryParser = new DefaultSubQueryParser()
     ) {}
 
     parse(char: string): Parser | null {
@@ -62,26 +75,35 @@ class PropertyValueParser implements Parser {
         }
         const next = this.parser.parse(char);
         if (next == null) {
-            this.endInternalParser();
-            this.parser = new DefaultSubQueryParser();
+            return new PropertyValueParser(
+                this.property,
+                this.metadata,
+                this.endInternalParser(),
+                new DefaultSubQueryParser()
+            )
         }
 
-        return this;
+        return new PropertyValueParser(
+            this.property,
+            this.metadata,
+            this.checkers,
+            next
+        )
     }
 
     private endInternalParser() {
         const checker = this.parser.end();
         if (checker != null) {
-            this.checkers.push(checker);
+            return this.checkers.concat([checker]);
         }
+        return this.checkers
     }
 
     end(): void | FileFilter<TFile> | StringChecker {
-        this.endInternalParser();
         return new FilePropertyFilter(
             this.metadata,
             this.property,
-            group(this.checkers),
+            group(this.endInternalParser()),
         );
     }
 }

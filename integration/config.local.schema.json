@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "obsidian": {
+        "type": "object",
+        "description": "Configuration for local obsidian install",
+        "properties": {
+          "install": {
+            "type": "string",
+            "format": "path",
+            "description": "Full path to the executable obsidian appliation.",
+            "default": "%AppData%/Local/Obsidian/Obsidian.exe"
+          },
+          "support": {
+            "type": "string",
+            "format": "path",
+            "description": "Path to the obsidian support folder",
+            "default": "%AppData%/Roaming/obsidian"
+          }
+        },
+        "required": ["install"],
+        "additionalProperties": false
+      },
+      "$schema": {
+        "type": "string"
+      }
+    },
+    "required": ["obsidian"],
+    "additionalProperties": false
+  }
+  
