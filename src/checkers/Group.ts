@@ -1,17 +1,17 @@
 import { StringChecker } from "./StringChecker";
 
-export function group(checkers: StringChecker[]): StringChecker;
-export function group(...checkers: StringChecker[]): StringChecker;
-export function group(...checkers: StringChecker[] | [StringChecker[]]): StringChecker {
+export function group(checkers: readonly StringChecker[]): StringChecker;
+export function group(...checkers: readonly StringChecker[]): StringChecker;
+export function group(...checkers: readonly StringChecker[] | [readonly StringChecker[]]): StringChecker {
     if (checkers.length === 1) {
         if (Array.isArray(checkers[0])) {
-            return matchAll(checkers[0])
+            return combine(checkers[0])
         }
     }
-    return matchAll(checkers as StringChecker[])
+    return combine(checkers as StringChecker[])
 }
 
-function matchAll(checkers: StringChecker[]): StringChecker {
+function combine(checkers: StringChecker[]): StringChecker {
     if (checkers.length === 1) return checkers[0]
     return new Group(checkers)
 }
