@@ -3,30 +3,22 @@ import { SubQueryParser } from "./SubQueryParser";
 import { Phrase } from "src/checkers/Phrase";
 
 export class SubQueryPhraseParser implements SubQueryParser {
-    private escaped: boolean = false;
-    private buffer: string = "";
-
+    
     constructor(
-        private matchCase: boolean = true
+        protected readonly matchCase: boolean = true,
+        protected readonly buffer: string = "",
     ) {}
 
     parse(char: string): SubQueryParser | null {
         switch (char) {
             case `\\`: {
-                if (!this.escaped) {
-                    this.escaped = true;
-                    return this;
-                }
+                return new EscapedSubQueryPhraseParser(this.buffer, this.matchCase)
             }
             case `"`: {
-                if (!this.escaped) {
-                    return null;
-                }
+                return null;
             }
         }
-        this.escaped = false;
-        this.buffer += char;
-        return this;
+        return new SubQueryPhraseParser(this.matchCase, this.buffer + char)
     }
 
     end(): StringChecker | void {
@@ -34,4 +26,22 @@ export class SubQueryPhraseParser implements SubQueryParser {
             return new Phrase(this.buffer, this.matchCase);
         }
     }
+}
+
+class EscapedSubQueryPhraseParser extends SubQueryPhraseParser {
+
+    constructor(
+        buffer: string,
+        matchCase: boolean = true
+    ) {
+        super(matchCase, buffer)
+    }
+
+    parse(char: string): SubQueryParser | null {
+        return new SubQueryPhraseParser(
+            this.matchCase,
+            this.buffer + char, 
+        )
+    }
+
 }

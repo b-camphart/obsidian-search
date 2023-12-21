@@ -1,48 +1,92 @@
 import { FileFilter, isFileFilter } from "src/filters/FileFilter";
 import { matchAll } from "src/filters/MatchAllFilter";
 import { DefaultParser } from "./DefaultParser";
-import { Parser } from "./Parser";
+import { Parser, ParentParser, isParentParser } from "./Parser";
 import { StringChecker } from "src/checkers/StringChecker";
 import { MetadataCache } from "obsidian";
+import { WordParser } from "./WordParser";
+import { PhraseParser } from "./PhraseParser";
+import { NegatedParser } from "./NegatedParser";
 
-export class GroupParser implements Parser {
-    private internalFilters: FileFilter[] = []
-    private internalParser: Parser;
+let _nonGroupParsers: Function[] | undefined;
+function NonGroupParsers() {
+    if (_nonGroupParsers == null) {
+        _nonGroupParsers = [DefaultParser, WordParser];
+    }
+    return _nonGroupParsers;
+}
 
-    constructor(
-        private readonly metadata: MetadataCache,
-        private readonly filterType: (checker: StringChecker) => FileFilter,
-        private matchCase?: boolean
-    ) {
-        this.internalParser = new DefaultParser(metadata, filterType, matchCase)
+export class GroupParser implements ParentParser {
+    public static start(
+        metadata: MetadataCache,
+        filterType: (checker: StringChecker) => FileFilter,
+        matchCase?: boolean,
+    ): GroupParser {
+        return new GroupParser(
+            metadata,
+            filterType,
+            [],
+            new DefaultParser(metadata, filterType, matchCase),
+            matchCase,
+        );
     }
 
+    private constructor(
+        private readonly metadata: MetadataCache,
+        private readonly filterType: (checker: StringChecker) => FileFilter,
+        private readonly internalFilters: readonly FileFilter[],
+        private readonly internalParser: Parser,
+        private readonly matchCase?: boolean,
+    ) {}
+
     parse(char: string): Parser | null {
-        if (char === `)` && !(this.internalParser instanceof GroupParser)) {
-            return null
+        if (char === `)` && !this.containsNestedGroupParser()) {
+            return null;
         }
 
-        
-        const nextParser = this.internalParser.parse(char)
+        const nextParser = this.internalParser.parse(char);
         if (nextParser != null) {
-            this.internalParser = nextParser
+            return new GroupParser(
+                this.metadata,
+                this.filterType,
+                this.internalFilters,
+                nextParser,
+                this.matchCase,
+            );
         } else {
-            this.endInternalParser()
-            this.internalParser = new DefaultParser(this.metadata, this.filterType, this.matchCase)
+            const filters = this.endInternalParser();
+            return new GroupParser(
+                this.metadata,
+                this.filterType,
+                filters,
+                new DefaultParser(
+                    this.metadata,
+                    this.filterType,
+                    this.matchCase,
+                ),
+                this.matchCase,
+            );
         }
+    }
 
-        return this;
+    containsNestedGroupParser() {
+        return (
+            this.internalParser instanceof GroupParser ||
+            (isParentParser(this.internalParser) &&
+                this.internalParser.containsNestedGroupParser())
+        );
     }
 
     private endInternalParser() {
         const filter = this.internalParser.end();
         if (isFileFilter(filter)) {
-            this.internalFilters.push(filter)
+            return this.internalFilters.concat([filter]);
         }
+        return this.internalFilters;
     }
 
     end(): FileFilter | void {
-        this.endInternalParser()
-        return matchAll(this.internalFilters)
+        const filters = this.endInternalParser();
+        return matchAll(filters);
     }
 }

@@ -4,25 +4,23 @@ import { Word } from "src/checkers/Word";
 
 export class SubQueryWordParser implements SubQueryParser {
     constructor(
-        private _buffer: string,
-        private matchCase?: boolean,
+        readonly buffer: string,
+        private readonly matchCase?: boolean,
     ) {}
-
-    get buffer() {
-        return this._buffer
-    }
 
     parse(char: string): SubQueryWordParser | null {
         if (char === ` `) {
             return null;
         }
-        this._buffer += char;
-        return this;
+        return new SubQueryWordParser(
+            this.buffer + char,
+            this.matchCase
+        )
     }
 
     end(): StringChecker | void {
-        if (this._buffer.length > 0) {
-            return new Word(this._buffer, this.matchCase);
+        if (this.buffer.length > 0) {
+            return new Word(this.buffer, this.matchCase);
         }
     }
 }

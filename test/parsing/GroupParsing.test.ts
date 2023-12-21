@@ -1,96 +1,142 @@
 import { TFile } from "obsidian";
-import { group } from "src/checkers/Group";
 import { not } from "src/checkers/Not";
 import { phrase } from "src/checkers/Phrase";
 import { word } from "src/checkers/Word";
-import { content } from "src/filters/FileContentFilter";
-import { file } from "src/filters/FileNameFilter";
-import { path } from "src/filters/FilePathFilter";
-import { matchAll } from "src/filters/MatchAllFilter";
-import { negate } from "src/filters/Negation";
-import { hideParseingTrace, parse, traceParsing } from "src/main";
-import { describe, it, expect } from "vitest";
+import {
+    file,
+    content,
+    path,
+    matchAll,
+    negate,
+    type FileFilter,
+} from "src/filters";
+import {
+    hideParseingTrace,
+    parse as actualParse,
+} from "src/main";
+import { describe, it, expect, afterEach, test } from "vitest";
 
 describe(`Parsing a Group`, () => {
-    it(`is unwrapped with a single word`, () => {
-        const filter = parse(`(Hello)`, null as any);
+    function parse(query: string | TemplateStringsArray) {
+        query = typeof query === "string" ? query : query.join("");
+        const filter = actualParse(query, null as any);
+        return {
+            to(expectedFilter: FileFilter) {
+                expect.soft(filter, `"${query}"`).toEqual(expectedFilter);
+            },
+        };
+    }
 
-        expect(filter).toEqual(content(word`Hello`));
+    afterEach(() => {
+        hideParseingTrace();
+    });
+
+    it(`is unwrapped with a single word`, () => {
+        parse`(Hello)`.to(content(word`Hello`));
     });
 
     it(`is unwrapped with a single phrase`, () => {
-        const filter = parse(`("Hello world")`, null as any);
-
-        expect(filter).toEqual(content(phrase`Hello world`));
+        parse`("Hello world")`.to(content(phrase`Hello world`));
     });
 
     it(`is unwrapped with a negated single word`, () => {
-        const filter = parse(`(-Hello)`, null as any);
-
-        expect(filter).toEqualOneOf([
-            content(not(word`Hello`)),
-            negate(content(word`Hello`)),
-        ]);
+        parse(`(-Hello)`).to(negate(content(word("Hello"))));
     });
 
     it(`is unwrapped with a negated single phrase`, () => {
-        const filter = parse(`(-"Hello world")`, null as any);
-
-        expect(filter).toEqualOneOf([
-            content(not(phrase`Hello world`)),
-            negate(content(phrase`Hello world`)),
-        ]);
+        parse(`(-"Hello world")`).to(negate(content(phrase`Hello world`)));
     });
 
     it(`combines multiple words`, () => {
-        const filter = parse(`(Hello world)`, null as any);
-
-        expect(filter).toEqualOneOf([
-            content(group(word`Hello`, word`world`)),
-            matchAll([content(word`Hello`), content(word`world`)]),
-        ]);
+        parse(`(Hello world)`).to(
+            matchAll(content(word`Hello`), content(word`world`)),
+        );
     });
 
     it(`can negate nested word`, () => {
-        const filter = parse(`(Hello -world)`, null as any);
-
-        expect(filter).toEqualOneOf([
-            content(group(word`Hello`, not(word`world`))),
-            matchAll([content(word`Hello`), negate(content(word`world`))]),
-        ]);
+        parse(`(Hello -world)`).to(
+            matchAll(content(word`Hello`), negate(content(word`world`))),
+        );
     });
 
     it(`can be negated`, () => {
-        const filter = parse(`-(Hello world)`, null as any);
-
-        expect(filter).toEqualOneOf([
-            content(not(group(word`Hello`, word`world`))),
-            negate(matchAll([content(word`Hello`), content(word`world`)])),
-        ]);
+        parse(`-(Hello world)`).to(
+            negate(matchAll(content(word`Hello`), content(word`world`))),
+        );
     });
 
     it(`can contain operators`, () => {
-        const filter = parse(`(file:Hello path:world)`, null as any);
-
-        expect(filter).toEqual(
-            matchAll<TFile>([file(word`Hello`), path(word`world`)]),
+        parse(`(file:Hello path:world)`).to(
+            matchAll<TFile>(file(word`Hello`), path(word`world`)),
         );
     });
 
-    it(`can contain nested gruops`, () => {
-        const filter = parse(
-            `(file:Hello (Hello path:-("Hello" world)))`,
-            null as any,
-        );
+    describe(`handling nested groups`, () => {
+        test(`simple, nested hierarchy`, () => {
+            parse(`((Hello))`).to(content(word`Hello`));
+            parse(`(((Hello)))`).to(content(word`Hello`));
+            parse(`((((Hello))))`).to(content(word`Hello`));
+        });
 
-        expect(filter).toEqual(
-            matchAll<TFile>([
-                file(word`Hello`),
-                matchAll<TFile>([
-                    content(word`Hello`),
-                    path(not(group(phrase`Hello`, word`world`)))
-                ]),
-            ]),
-        );
+        test(`adjacent nested groups`, () => {
+            parse`((Hello) (There))`.to(
+                matchAll(content(word`Hello`), content(word`There`)),
+            );
+            parse`((Hello) ((There) (General Kenobe)))`.to(
+                matchAll(
+                    content(word("Hello")),
+                    matchAll(
+                        content(word("There")),
+                        matchAll(
+                            content(word("General")),
+                            content(word("Kenobe")),
+                        ),
+                    ),
+                ),
+            );
+        });
+
+        test(`groups within nested operators`, () => {
+            parse(`(-(Hello))`).to(negate(content(word("Hello"))));
+            parse(`(file:(Hello))`).to(file(word("Hello")));
+            parse(`(-(Hello) -(World))`).to(
+                matchAll(
+                    negate(content(word("Hello"))),
+                    negate(content(word("World"))),
+                ),
+            );
+            parse(`(-(Hello) -(World file:-(There)))`).to(
+                matchAll(
+                    negate(content(word("Hello"))),
+                    negate(
+                        matchAll(
+                            content(word("World")),
+                            file(not(word("There"))),
+                        ),
+                    ),
+                ),
+            );
+        });
     });
 });
+
+/*
+Let's think about this case:
+`(Hello (there -(mr file:kenobe) grevous)`
+this SHOULD result in the following filter:
+matchAll(
+  content(word("Hello")),
+  matchAll(
+    content(word("there")),
+    negate(
+      matchAll(
+        content(word("mr")),
+        file(word("kenobe"))
+      )
+    )
+  ),
+  content(word("grevous"))
+)
+
+
+*/

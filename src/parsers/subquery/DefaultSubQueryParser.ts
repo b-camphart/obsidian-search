@@ -17,7 +17,7 @@ export class DefaultSubQueryParser implements SubQueryParser {
                 return new SubQueryPhraseParser(this.matchCase);
             }
             case `(`: {
-                return new SubQueryGroupParser(this.matchCase)
+                return SubQueryGroupParser.start(this.matchCase)
             }
             case ` `: {
                 return this;

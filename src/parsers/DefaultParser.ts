@@ -22,7 +22,7 @@ export class DefaultParser implements Parser {
     parse(char: string): Parser | null {
         switch (char) {
             case `-`: {
-                return new NegatedParser(this.metadata, this.filterType, this.matchCase);
+                return NegatedParser.start(this.metadata, this.filterType, this.matchCase);
             }
             case `"`: {
                 return new PhraseParser(this.filterType, this.matchCase);
@@ -31,7 +31,7 @@ export class DefaultParser implements Parser {
                 return new RegexParser(this.filterType, this.matchCase);
             }
             case `(`: {
-                return new GroupParser(this.metadata, this.filterType, this.matchCase);
+                return GroupParser.start(this.metadata, this.filterType, this.matchCase);
             }
             case `[`: {
                 return parseProperty(this.metadata)
@@ -40,7 +40,7 @@ export class DefaultParser implements Parser {
                 return null;
             }
             default: {
-                return new WordParser(char, this.filterType, this.metadata, this.matchCase);
+                return WordParser.start(char, this.filterType, this.metadata, this.matchCase);
             }
         }
     }
