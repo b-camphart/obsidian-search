@@ -33,7 +33,7 @@ export class DefaultParser implements Parser {
             case `(`: {
                 return GroupParser.start(this.metadata, this.filterType, this.matchCase);
             }
-            case `[`: {
+            case `[`: { 
                 return parseProperty(this.metadata)
             }
             case ` `: {
