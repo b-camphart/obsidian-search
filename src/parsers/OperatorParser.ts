@@ -35,6 +35,8 @@ export class OperatorParser implements ParentParser {
     ) {}
 
     parse(char: string): Parser | null {
+        if (this.operator === "tag" && char === "#") return this
+
         const nextParser = this.internalParser.parse(char);
         if (nextParser == null) {
             return null;
