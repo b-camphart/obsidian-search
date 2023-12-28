@@ -3,7 +3,7 @@ import { createTestVault, generateManifest, launchObsidian } from './runner'
 import { defineConfig } from 'vite'
 
 const vaultPath = join(process.cwd(), 'testVault')
-const pluginName = "obsidian-search-e2e-tests";
+const pluginName = "obsidian-search-int-tests";
 const pluginPath = join(vaultPath, '.obsidian', 'plugins', pluginName);
 
 
@@ -28,7 +28,7 @@ export default defineConfig({
     build: {
         outDir: pluginPath,
         lib: {
-            entry: 'e2e/plugin/TestPlugin.ts',
+            entry: 'integration/plugin/TestPlugin.ts',
             name: 'main',
             formats: ['cjs'],
             manualChunks: undefined

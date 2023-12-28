@@ -11,7 +11,7 @@ export function createTestVault(vaultPath) {
 
     const initialSettings = {
         "community-plugins.json": [
-            "obsidian-search-e2e-tests"
+            "obsidian-search-int-tests"
         ]
     }
 
@@ -25,8 +25,22 @@ export function createTestVault(vaultPath) {
     
 }
 
+/**
+ * @typedef {Object} Config
+ * 
+ * @property {ObsidianConfig} obsidian
+ */
+/**
+ * @typedef {Object} ObsidianConfig
+ * @property {string} install
+ * @property {string} support
+ */
+/**
+ * 
+ * @returns {Config | null}
+ */
 function loadLocalConfig() {
-    const configPath = join(process.cwd(), "e2e", "config.local.json")
+    const configPath = join(process.cwd(), "integration", "config.local.json")
     if (! existsSync(configPath)) {
         console.error("config.local.json file not found.  Creating one.  Please fill out the properties");
         writeFileSync(configPath, `{
@@ -108,7 +122,7 @@ export function launchObsidian(vaultPath) {
 export function generateManifest(pluginPath, pluginName) {
     const manifest = {
         id: pluginName,
-        name: "Obsidian Search e2e Tests",
+        name: "Obsidian Search Integration Tests",
         version: "1.0.0",
         minAppVersion: "1.4.14",
         description: "None",
