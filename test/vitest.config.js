@@ -5,6 +5,6 @@ export default defineConfig({
         "setupFiles": [
             "test/assertions.ts"  // relative to top-level 
         ],
-        include: ["./**/*.test.ts"]
+        include: ["test/**/*.test.ts"],
     }
 })
