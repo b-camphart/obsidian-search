@@ -6,6 +6,7 @@ import { not } from "src/checkers/Not";
 import { negate } from "src/filters/Negation";
 import { MetadataCache } from "obsidian";
 import { GroupParser } from "./GroupParser";
+import { matchAll } from "src/filters";
 
 export class NegatedParser implements ParentParser {
     public static start(
@@ -49,13 +50,11 @@ export class NegatedParser implements ParentParser {
         );
     }
 
-    end(): FileFilter | StringChecker | void {
-        const result = this.internalParser.end();
-        if (isStringChecker(result)) {
-            return not(result);
-        }
+    end(activeFilter: FileFilter): FileFilter {
+        const result = this.internalParser.end(matchAll());
         if (isFileFilter(result)) {
-            return negate(result);
+            return activeFilter.and(negate(result));
         }
+        return activeFilter
     }
 }

@@ -25,7 +25,7 @@ export class GroupParser implements ParentParser {
         return new GroupParser(
             metadata,
             filterType,
-            [],
+            matchAll(),
             new DefaultParser(metadata, filterType, matchCase),
             matchCase,
         );
@@ -34,7 +34,7 @@ export class GroupParser implements ParentParser {
     private constructor(
         private readonly metadata: MetadataCache,
         private readonly filterType: (checker: StringChecker) => FileFilter,
-        private readonly internalFilters: readonly FileFilter[],
+        private readonly internalFilter: FileFilter,
         private readonly internalParser: Parser,
         private readonly matchCase?: boolean,
     ) {}
@@ -49,16 +49,16 @@ export class GroupParser implements ParentParser {
             return new GroupParser(
                 this.metadata,
                 this.filterType,
-                this.internalFilters,
+                this.internalFilter,
                 nextParser,
                 this.matchCase,
             );
         } else {
-            const filters = this.endInternalParser();
+            const filter = this.endInternalParser();
             return new GroupParser(
                 this.metadata,
                 this.filterType,
-                filters,
+                filter,
                 new DefaultParser(
                     this.metadata,
                     this.filterType,
@@ -77,16 +77,16 @@ export class GroupParser implements ParentParser {
         );
     }
 
-    private endInternalParser() {
-        const filter = this.internalParser.end();
+    private endInternalParser(): FileFilter {
+        const filter = this.internalParser.end(this.internalFilter);
         if (isFileFilter(filter)) {
-            return this.internalFilters.concat([filter]);
+            return filter
         }
-        return this.internalFilters;
+        return this.internalFilter;
     }
 
-    end(): FileFilter | void {
-        const filters = this.endInternalParser();
-        return matchAll(filters);
+    end(activeFilter: FileFilter): FileFilter {
+        const filter = this.endInternalParser();
+        return activeFilter.and(filter);
     }
 }

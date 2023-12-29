@@ -9,4 +9,6 @@ export function isStringChecker(obj: any): obj is StringChecker {
 
 export interface StringChecker {
     matches(test: string): boolean;
+    or(checker: StringChecker): StringChecker;
+    and(checker: StringChecker): StringChecker;
 }

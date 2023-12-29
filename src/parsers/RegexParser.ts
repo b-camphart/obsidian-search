@@ -2,6 +2,7 @@ import { FileFilter } from "src/filters/FileFilter";
 import { Parser } from "./Parser";
 import { StringChecker } from "src/checkers/StringChecker";
 import { SubQueryRegexParser } from "./subquery/SubQueryRegexParser";
+import { matchAll } from "src/filters";
 
 export class RegexParser implements Parser {
     private subParser: SubQueryRegexParser;
@@ -22,10 +23,11 @@ export class RegexParser implements Parser {
         return this;
     }
 
-    end(): FileFilter | void {
+    end(activeFilter: FileFilter): FileFilter {
         const checker = this.subParser.end();
         if (checker != null) {
-            return this.filterType(checker);
+            return activeFilter.and(this.filterType(checker))
         }
+        return activeFilter
     }
 }

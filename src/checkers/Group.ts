@@ -1,3 +1,4 @@
+import { Or } from "./Or";
 import { StringChecker } from "./StringChecker";
 
 export function group(checkers: readonly StringChecker[]): StringChecker;
@@ -22,6 +23,14 @@ export class Group implements StringChecker {
 
     matches(test: string): boolean {
         return this.checkers.every(checker => checker.matches(test))
+    }
+
+    or(checker: StringChecker): StringChecker {
+        return new Or(this, checker)
+    }
+
+    and(checker: StringChecker): StringChecker {
+        return group(this.checkers.concat([checker]))
     }
 
 }

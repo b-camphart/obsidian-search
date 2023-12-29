@@ -5,28 +5,29 @@ import { SubQueryPhraseParser } from "./subquery/SubQueryPhraseParser";
 import { SubQueryParser } from "./subquery/SubQueryParser";
 
 export class PhraseParser implements Parser {
-    private subParser: SubQueryParser
+    private subParser: SubQueryParser;
 
     constructor(
         private readonly filterType: (checker: StringChecker) => FileFilter,
         matchCase: boolean = true,
     ) {
-        this.subParser = new SubQueryPhraseParser(matchCase)
+        this.subParser = new SubQueryPhraseParser(matchCase);
     }
 
     parse(char: string): Parser | null {
-        const nextParser = this.subParser.parse(char)
+        const nextParser = this.subParser.parse(char);
         if (nextParser == null) {
-            return null
+            return null;
         }
-        this.subParser = nextParser
+        this.subParser = nextParser;
         return this;
     }
 
-    end(): FileFilter | void {
+    end(activeFilter: FileFilter): FileFilter {
         const checker = this.subParser.end();
         if (checker != null) {
-            return this.filterType(checker);
+            return activeFilter.and(this.filterType(checker));
         }
+        return activeFilter;
     }
 }

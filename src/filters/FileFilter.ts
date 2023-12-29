@@ -11,4 +11,7 @@ export function isFileFilter(obj: any): obj is FileFilter {
 
 export interface FileFilter<FilePart extends Partial<TFile> = TFile> {
     appliesTo(file: FilePart): Promise<boolean>;
+
+    and<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<FilePart & R>
+    or<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<FilePart & R>
 }

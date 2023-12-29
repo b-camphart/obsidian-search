@@ -1,14 +1,13 @@
 import { FileFilter } from "src/filters/FileFilter";
 import { ParentParser, Parser, isParentParser } from "./Parser";
 import { SubQueryParser } from "./subquery/SubQueryParser";
-import { StringChecker, isStringChecker } from "src/checkers/StringChecker";
+import { isStringChecker } from "src/checkers/StringChecker";
 import { FileNameFilter } from "src/filters/FileNameFilter";
 import { FilePathFilter } from "src/filters/FilePathFilter";
 import { DefaultSubQueryParser } from "./subquery/DefaultSubQueryParser";
 import { FileContentFilter } from "src/filters/FileContentFilter";
 import { FileTagsFilter } from "src/filters/FileTagsFilter";
 import { MetadataCache } from "obsidian";
-import { GroupParser } from "./GroupParser";
 import { SubQueryGroupParser } from "./subquery/SubQueryGroupParser";
 
 export class OperatorParser implements ParentParser {
@@ -21,11 +20,9 @@ export class OperatorParser implements ParentParser {
             operator,
             metadata,
             new DefaultSubQueryParser(matchCase),
-            matchCase
-        )
+            matchCase,
+        );
     }
-
-    ;
 
     private constructor(
         private readonly operator: string,
@@ -35,7 +32,7 @@ export class OperatorParser implements ParentParser {
     ) {}
 
     parse(char: string): Parser | null {
-        if (this.operator === "tag" && char === "#") return this
+        if (this.operator === "tag" && char === "#") return this;
 
         const nextParser = this.internalParser.parse(char);
         if (nextParser == null) {
@@ -45,8 +42,8 @@ export class OperatorParser implements ParentParser {
             this.operator,
             this.metadata,
             nextParser,
-            this.matchCase
-        )
+            this.matchCase,
+        );
     }
 
     containsNestedGroupParser(): boolean {
@@ -57,23 +54,26 @@ export class OperatorParser implements ParentParser {
         );
     }
 
-    end(): void | StringChecker | FileFilter {
+    end(activeFilter: FileFilter): FileFilter {
         const checker = this.internalParser.end();
         if (isStringChecker(checker)) {
             switch (this.operator) {
                 case "file": {
-                    return new FileNameFilter(checker);
+                    return activeFilter.and(new FileNameFilter(checker));
                 }
                 case "path": {
-                    return new FilePathFilter(checker);
+                    return activeFilter.and(new FilePathFilter(checker));
                 }
                 case "content": {
-                    return new FileContentFilter(checker);
+                    return activeFilter.and(new FileContentFilter(checker));
                 }
                 case "tag": {
-                    return new FileTagsFilter(checker, this.metadata);
+                    return activeFilter.and(
+                        new FileTagsFilter(checker, this.metadata),
+                    );
                 }
             }
         }
+        return activeFilter;
     }
 }

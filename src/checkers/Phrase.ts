@@ -1,3 +1,5 @@
+import { group } from "./Group";
+import { Or } from "./Or";
 import { StringChecker } from "./StringChecker";
 
 export function phrase(
@@ -27,5 +29,13 @@ export class Phrase implements StringChecker {
         return test
             .toLocaleUpperCase()
             .includes(this.phrase.toLocaleUpperCase());
+    }
+
+    or(checker: StringChecker): StringChecker {
+        return new Or(this, checker)
+    }
+
+    and(checker: StringChecker): StringChecker {
+        return group(this, checker)
     }
 }

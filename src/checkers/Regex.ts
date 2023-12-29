@@ -1,3 +1,5 @@
+import { group } from "./Group";
+import { Or } from "./Or";
 import { StringChecker } from "./StringChecker";
 
 export function regex(
@@ -31,6 +33,14 @@ export class Regex implements StringChecker {
 
     matches(test: string): boolean {
         return this.regex.test(test)
+    }
+
+    or(checker: StringChecker): StringChecker {
+        return new Or(this, checker)
+    }
+
+    and(checker: StringChecker): StringChecker {
+        return group(this, checker)
     }
 
 }

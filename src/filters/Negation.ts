@@ -1,6 +1,7 @@
 import { TFile } from "obsidian";
 import { FileFilter } from "./FileFilter";
 import { matchAll } from "./MatchAllFilter";
+import { or } from "./OrFilter";
 
 export function negate<FilePart extends Partial<TFile>>(
     filter: FileFilter<FilePart>,
@@ -32,4 +33,12 @@ export class Negation<FilePart extends Partial<TFile> = TFile>
     }
 
     negate(): FileFilter<FilePart> { return this.negated }
+
+    and<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<FilePart & R> {
+        return matchAll(this, filter as any)
+    }
+
+    or<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<FilePart & R> {
+        return or(this, filter as any)
+    }
 }

@@ -1,6 +1,8 @@
 import { CachedMetadata, FrontMatterCache, MetadataCache, TFile, TagCache } from "obsidian";
 import { StringChecker } from "src/checkers/StringChecker";
 import { FileFilter } from "src/filters/FileFilter";
+import { matchAll } from "./MatchAllFilter";
+import { or } from "./OrFilter";
 
 type TagProperty = string | string[]
 
@@ -83,5 +85,13 @@ export class FileTagsFilter implements FileFilter {
     async appliesTo(file: TFile): Promise<boolean> {
         const cache = this.metadata.getFileCache(file)
         return this.metadataFilter.appliesTo(cache)
+    }
+
+    and<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<TFile & R> {
+        return matchAll(this, filter as FileFilter)
+    }
+
+    or<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<TFile & R> {
+        return or(this, filter as FileFilter)
     }
 }

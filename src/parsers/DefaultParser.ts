@@ -45,5 +45,7 @@ export class DefaultParser implements Parser {
         }
     }
 
-    end(): FileFilter | StringChecker | void {}
+    end(activeFilter: FileFilter): FileFilter {
+        return activeFilter
+    }
 }

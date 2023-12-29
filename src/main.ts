@@ -17,7 +17,7 @@ export function hideParseingTrace() {
 export function parse(query: string, metadata: MetadataCache): FileFilter {
     query = query.trim();
 
-    const filters: FileFilter[] = [];
+    let filter: FileFilter = matchAll();
 
     let parser: Parser = new DefaultParser(metadata);
     for (const char of query) {
@@ -26,9 +26,9 @@ export function parse(query: string, metadata: MetadataCache): FileFilter {
         }
         const nextParser = parser.parse(char);
         if (nextParser == null) {
-            const checker = parser.end();
+            const checker = parser.end(filter);
             if (isFileFilter(checker)) {
-                filters.push(checker);
+                filter = checker
             }
             parser = new DefaultParser(metadata);
         } else {
@@ -41,12 +41,12 @@ export function parse(query: string, metadata: MetadataCache): FileFilter {
         }
     }
 
-    const checker = parser.end();
+    const checker = parser.end(filter);
     if (isFileFilter(checker)) {
-        filters.push(checker);
+        return checker
     }
 
-    return matchAll(filters);
+    return filter
 }
 
 export async function* search(query: string, app: App): AsyncGenerator<TFile> {

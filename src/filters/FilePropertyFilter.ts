@@ -5,6 +5,8 @@ import {
 } from "obsidian";
 import { FileFilter } from "src/filters/FileFilter";
 import { StringChecker } from "../checkers/StringChecker";
+import { matchAll } from "./MatchAllFilter";
+import { or } from "./OrFilter";
 
 export interface Metadata extends Pick<MetadataCache, "getFileCache"> {
     getFileCache(file: TFile): null | Pick<CachedMetadata, "frontmatter">;
@@ -53,5 +55,13 @@ export class FilePropertyFilter implements FileFilter {
     async appliesTo(file: TFile): Promise<boolean> {
         const cache = this.metadata.getFileCache(file)
         return this.metadataFilter.appliesTo(cache)
+    }
+
+    and<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<TFile & R> {
+        return matchAll(this, filter as FileFilter)
+    }
+
+    or<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<TFile & R> {
+        return or(this, filter as FileFilter)
     }
 }

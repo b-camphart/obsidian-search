@@ -12,11 +12,10 @@ export function parseProperty(metadata: MetadataCache): Parser {
 }
 
 class PropertyNameParser implements Parser {
-
     constructor(
         private readonly checkers: readonly StringChecker[],
         private readonly metadata: MetadataCache,
-        private parser: SubQueryParser = new DefaultSubQueryParser()
+        private parser: SubQueryParser = new DefaultSubQueryParser(),
     ) {}
 
     parse(char: string): Parser | null {
@@ -33,15 +32,11 @@ class PropertyNameParser implements Parser {
         if (next == null) {
             return new PropertyNameParser(
                 this.endInternalParser(),
-                this.metadata
-            )
+                this.metadata,
+            );
         }
 
-        return new PropertyNameParser(
-            this.checkers,
-            this.metadata,
-            next
-        )
+        return new PropertyNameParser(this.checkers, this.metadata, next);
     }
 
     private endInternalParser() {
@@ -52,21 +47,22 @@ class PropertyNameParser implements Parser {
         return this.checkers;
     }
 
-    end(): void | FileFilter<TFile> | StringChecker {
-        return new FilePropertyFilter(
-            this.metadata,
-            group(this.endInternalParser()),
+    end(activeFilter: FileFilter): FileFilter<TFile> {
+        return activeFilter.and(
+            new FilePropertyFilter(
+                this.metadata,
+                group(this.endInternalParser()),
+            ),
         );
     }
 }
 
-class PropertyValueParser implements Parser {;
-
+class PropertyValueParser implements Parser {
     constructor(
         private readonly property: StringChecker,
         private readonly metadata: MetadataCache,
         private readonly checkers: readonly StringChecker[] = [],
-        private parser: SubQueryParser = new DefaultSubQueryParser()
+        private parser: SubQueryParser = new DefaultSubQueryParser(),
     ) {}
 
     parse(char: string): Parser | null {
@@ -79,16 +75,16 @@ class PropertyValueParser implements Parser {;
                 this.property,
                 this.metadata,
                 this.endInternalParser(),
-                new DefaultSubQueryParser()
-            )
+                new DefaultSubQueryParser(),
+            );
         }
 
         return new PropertyValueParser(
             this.property,
             this.metadata,
             this.checkers,
-            next
-        )
+            next,
+        );
     }
 
     private endInternalParser() {
@@ -96,14 +92,16 @@ class PropertyValueParser implements Parser {;
         if (checker != null) {
             return this.checkers.concat([checker]);
         }
-        return this.checkers
+        return this.checkers;
     }
 
-    end(): void | FileFilter<TFile> | StringChecker {
-        return new FilePropertyFilter(
-            this.metadata,
-            this.property,
-            group(this.endInternalParser()),
+    end(activeFilter: FileFilter): FileFilter<TFile> {
+        return activeFilter.and(
+            new FilePropertyFilter(
+                this.metadata,
+                this.property,
+                group(this.endInternalParser()),
+            ),
         );
     }
 }

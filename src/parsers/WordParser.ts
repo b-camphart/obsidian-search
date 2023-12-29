@@ -5,6 +5,8 @@ import { FileFilter } from "src/filters/FileFilter";
 import { SubQueryWordParser } from "./subquery/SubQueryWordParser";
 import { MetadataCache } from "obsidian";
 import { DefaultParser } from "./DefaultParser";
+import { EitherPerser } from "./EitherParser";
+import { matchAll } from "src/filters";
 
 export class WordParser implements Parser {
     public static start(
@@ -28,6 +30,10 @@ export class WordParser implements Parser {
         private readonly matchCase?: boolean,
     ) {}
 
+    private get buffer() {
+        return this.subParser.buffer
+    }
+
     parse(char: string): Parser | null {
         if (char === `:`) {
             const buffer = this.subParser.buffer;
@@ -43,6 +49,14 @@ export class WordParser implements Parser {
         }
         const nextParser = this.subParser.parse(char);
         if (nextParser == null) {
+            switch (this.buffer.toLocaleLowerCase()) {
+                case "or": {
+                    return EitherPerser.start(this.metadata, this.filterType, this.matchCase)
+                }
+                case "and": {
+                    return new DefaultParser(this.metadata)
+                }
+            }
             return null;
         }
         return new WordParser(
@@ -53,10 +67,11 @@ export class WordParser implements Parser {
         )
     }
 
-    end(): FileFilter | void {
+    end(activeFilter: FileFilter): FileFilter {
         const checker = this.subParser.end();
         if (checker != null) {
-            return this.filterType(checker);
+            return activeFilter.and(this.filterType(checker))
         }
+        return activeFilter
     }
 }
