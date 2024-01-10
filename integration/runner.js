@@ -90,7 +90,7 @@ export function launchObsidian(vaultPath) {
     }
 
     const newVault = { open: true, ts: Date.now(), path: vaultPath }
-    const id = "test-vault-path"
+    const id = "obsidian-search-test-vault-path"
     vaults[id] = newVault
 
     writeFileSync(obsidianCachePath, JSON.stringify(obsidianCache))

@@ -2,7 +2,7 @@ import { join, resolve } from 'path'
 import { createTestVault, generateManifest, launchObsidian } from './runner'
 import { defineConfig } from 'vite'
 
-const vaultPath = join(process.cwd(), 'testVault')
+const vaultPath = join(process.cwd(), 'testVault-obsidian-search')
 const pluginName = "obsidian-search-int-tests";
 const pluginPath = join(vaultPath, '.obsidian', 'plugins', pluginName);
 
