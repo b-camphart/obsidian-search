@@ -29,12 +29,12 @@ function combine<FilePart extends Partial<TFile>>(
     return MatchAllFilter.flattened(filters);
 }
 
-const MatchNone: FileFilter = {
+export const MatchNone: FileFilter = {
     async appliesTo(file) {
         return false;
     },
     and(filter) {
-        return filter;
+        return this;
     },
     or(filter) {
         return filter;

@@ -1,12 +1,11 @@
-import { StringChecker, isStringChecker } from "src/checkers/StringChecker";
+import { StringChecker } from "src/checkers/StringChecker";
 import { DefaultParser } from "./DefaultParser";
 import { ParentParser, Parser, isParentParser } from "./Parser";
 import { FileFilter, isFileFilter } from "src/filters/FileFilter";
-import { not } from "src/checkers/Not";
 import { negate } from "src/filters/Negation";
 import { MetadataCache } from "obsidian";
 import { GroupParser } from "./GroupParser";
-import { matchAll } from "src/filters";
+import { EmtpyFilter } from "src/main";
 
 export class NegatedParser implements ParentParser {
     public static start(
@@ -51,7 +50,7 @@ export class NegatedParser implements ParentParser {
     }
 
     end(activeFilter: FileFilter): FileFilter {
-        const result = this.internalParser.end(matchAll());
+        const result = this.internalParser.end(EmtpyFilter);
         if (isFileFilter(result)) {
             return activeFilter.and(negate(result));
         }

@@ -3,6 +3,7 @@ import { StringChecker } from "src/checkers/StringChecker";
 import { FileFilter, isFileFilter, matchAll } from "src/filters";
 import { Parser } from "./Parser";
 import { DefaultParser } from "./DefaultParser";
+import { EmtpyFilter } from "src/main";
 
 export class EitherPerser implements Parser {
 
@@ -26,7 +27,7 @@ export class EitherPerser implements Parser {
     parse(char: string): Parser | null {
         const nextParser = this.internalParser.parse(char)
         if (nextParser == null) {
-            const filterOrChecker = this.internalParser.end(matchAll())
+            const filterOrChecker = this.internalParser.end(EmtpyFilter)
             if (isFileFilter(filterOrChecker)) {
                 return new EitherPerser(
                     this.metadata,
@@ -51,7 +52,7 @@ export class EitherPerser implements Parser {
     }
 
     end(activeFilter: FileFilter): FileFilter<TFile> {
-        const filterOrChecker = this.internalParser.end(matchAll())
+        const filterOrChecker = this.internalParser.end(EmtpyFilter)
         if (isFileFilter(filterOrChecker)) {
             return activeFilter.or(matchAll(this.collectedBFilters.concat([filterOrChecker])))
         }

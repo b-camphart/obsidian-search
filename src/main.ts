@@ -1,23 +1,47 @@
 /// <reference types="vite/client" />
 import { App, MetadataCache, TFile } from "obsidian";
 import { FileFilter, isFileFilter } from "./filters/FileFilter";
-import { matchAll } from "./filters/MatchAllFilter";
 import { Parser } from "./parsers/Parser";
 import { DefaultParser } from "./parsers/DefaultParser";
 import util from "util";
 
-let debug: typeof console.log = () => {};
+let debug: typeof console.log = () => { };
 export function traceParsing() {
     debug = console.log;
 }
 export function hideParseingTrace() {
-    debug = () => {};
+    debug = () => { };
 }
 
-export function parse(query: string, metadata: MetadataCache): FileFilter {
-    query = query.trim();
+/**
+ * @since 0.1.1
+ * 
+ * Never matches against a file.  Always defers to whatever filter it's combined with.
+ */
+export const EmtpyFilter: FileFilter = {
+    async appliesTo(file) {
+        return false
+    },
+    and(filter) {
+        return filter
+    },
+    or(filter) {
+        return filter
+    },
+}
 
-    let filter: FileFilter = matchAll();
+/**
+ * @since 0.1.0
+ * 
+ * Parses the provided query and returns a FileFilter that can be used to match files against.
+ * 
+ * @param query The query to parse and turn into a {@link FileFilter}
+ * @param metadata MetadataCache provided by Obsidian's {@link App.metadataCache} property.
+ * @param filter The filter to fallback to for an empty query.  Default behavior is to {@link EmtpyFilter}.
+ * @returns 
+ */
+export function parse(query: string, metadata: MetadataCache, filter: FileFilter = EmtpyFilter): FileFilter {
+    query = query.trim();
 
     let parser: Parser = new DefaultParser(metadata);
     for (const char of query) {

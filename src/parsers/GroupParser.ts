@@ -1,12 +1,10 @@
 import { FileFilter, isFileFilter } from "src/filters/FileFilter";
-import { matchAll } from "src/filters/MatchAllFilter";
 import { DefaultParser } from "./DefaultParser";
 import { Parser, ParentParser, isParentParser } from "./Parser";
 import { StringChecker } from "src/checkers/StringChecker";
 import { MetadataCache } from "obsidian";
 import { WordParser } from "./WordParser";
-import { PhraseParser } from "./PhraseParser";
-import { NegatedParser } from "./NegatedParser";
+import { EmtpyFilter } from "src/main";
 
 let _nonGroupParsers: Function[] | undefined;
 function NonGroupParsers() {
@@ -25,7 +23,7 @@ export class GroupParser implements ParentParser {
         return new GroupParser(
             metadata,
             filterType,
-            matchAll(),
+            EmtpyFilter,
             new DefaultParser(metadata, filterType, matchCase),
             matchCase,
         );
