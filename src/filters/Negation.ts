@@ -29,7 +29,7 @@ export class Negation<FilePart extends Partial<TFile> = TFile>
     constructor(private readonly negated: FileFilter<FilePart>) {}
 
     async appliesTo(file: FilePart): Promise<boolean> {
-        return !this.negated.appliesTo(file);
+        return !(await this.negated.appliesTo(file));
     }
 
     negate(): FileFilter<FilePart> { return this.negated }
