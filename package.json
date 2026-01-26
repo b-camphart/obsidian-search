@@ -1,6 +1,6 @@
 {
   "name": "obsidian-search",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "main": "dist/main.cjs",
   "module": "dist/main.mjs",
@@ -36,5 +36,6 @@
     "vite": "5.0.10",
     "vite-plugin-dts": "3.6.4",
     "vitest": "^1.1.0"
-  }
+  },
+  "packageManager": "pnpm@10.5.2+sha512.da9dc28cd3ff40d0592188235ab25d3202add8a207afbedc682220e4a0029ffbff4562102b9e6e46b4e3f9e8bd53e6d05de48544b0c57d4b0179e22c76d1199b"
 }
