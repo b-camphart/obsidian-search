@@ -1,97 +1,117 @@
-import { CachedMetadata, FrontMatterCache, MetadataCache, TFile, TagCache } from "obsidian";
-import { StringChecker } from "src/checkers/StringChecker";
-import { FileFilter } from "src/filters/FileFilter";
-import { matchAll } from "./MatchAllFilter";
-import { or } from "./OrFilter";
+import type * as obsidian from "obsidian";
+import type { FileFilter } from "./FileFilter";
+import type { StringFilter } from "./strings";
+import { Filter } from "./Filter";
 
-type TagProperty = string | string[]
+export function tag(
+	word: string,
+	metadataCache: Pick<obsidian.MetadataCache, "getFileCache">,
+): FileFilter {
+	return new TagFilter({ word, metadataCache });
+}
+
+export class TagFilter extends Filter<obsidian.TFile> {
+	word;
+	#metadataCache: Pick<obsidian.MetadataCache, "getFileCache">;
+
+	constructor(def: {
+		word: string;
+		metadataCache: Pick<obsidian.MetadataCache, "getFileCache">;
+	}) {
+		super();
+		this.word = def.word;
+		this.#metadataCache = def.metadataCache;
+	}
+
+	override appliesTo(this: TagFilter, file: obsidian.TFile): boolean {
+		const metadata = this.#metadataCache.getFileCache(file);
+		if (!metadata) return false;
+		// prefer frontmatter tags
+		{
+			const frontmatter = metadata.frontmatter ?? {};
+			const tags: unknown = frontmatter.tags;
+			if (Array.isArray(tags)) {
+				if (
+					tags.some(
+						(it) =>
+							typeof it === "string" &&
+							it.toLowerCase().startsWith(this.word.toLowerCase()),
+					)
+				) {
+					return true;
+				}
+			}
+		}
+
+		// check inline tags
+		const tags = metadata.tags;
+		if (!tags) return false;
+		return tags.some((it) => it.tag.toLowerCase().startsWith(this.word.toLowerCase()));
+	}
+
+	override toQuery(this: TagFilter): string {
+		return `tag:${this.word}`;
+	}
+}
+
+type TagProperty = string | (string | null)[];
 
 interface Metadata {
-    /**
-     * @see {@link CachedMetadata.tags}
-     */
-    tags?: Omit<TagCache, 'position'>[];
-    /**
-     * @see {@link CachedMetadata.frontmatter}
-     */
-    frontmatter?: Partial<FrontMatterCache> & { tag?: TagProperty, tags?: TagProperty };
+	/**
+	 * @see {@link obsidian.CachedMetadata.tags}
+	 */
+	tags?: Omit<obsidian.TagCache, "position">[];
+	/**
+	 * @see {@link obsidian.CachedMetadata.frontmatter}
+	 */
+	frontmatter?: Partial<obsidian.FrontMatterCache> & { tag?: TagProperty; tags?: TagProperty };
 }
 
 export interface MetadataRepository {
-    /**
-     * @see {@link MetadataCache.getFileCache}
-     */
-    getFileCache(file: TFile): Metadata | null
+	/**
+	 * @see {@link obsidian.MetadataCache.getFileCache}
+	 */
+	getFileCache(file: obsidian.TFile): Metadata | null;
 }
 
 export interface MetadataFilter {
-    appliesTo(metadata: Metadata | null): boolean;
+	appliesTo(metadata: Metadata | null): boolean;
 }
 
 export class MetadataTagFilter implements MetadataFilter {
+	constructor(private readonly checker: StringFilter) {}
 
-    constructor(
-        private readonly checker: StringChecker
-    ){}
+	appliesTo(metadata: Metadata | null): boolean {
+		const tags = metadata?.tags;
+		if (tags != null) {
+			if (tags.some((tag) => this.checker.appliesTo(`#${tag.tag}`))) {
+				return true;
+			}
+		}
 
-    appliesTo(metadata: Metadata | null): boolean {
-        const tags = metadata?.tags
-        if (tags != null) {
-            if (tags.some(tag => this.checker.matches(`#${tag.tag}`))) {
-                return true
-            }
-        }
+		const frontmatter = metadata?.frontmatter;
+		if (frontmatter == null) return false;
+		if (this.checkTags(frontmatter.tag)) {
+			return true;
+		}
+		if (this.checkTags(frontmatter.tags)) {
+			return true;
+		}
 
-        const frontmatter = metadata?.frontmatter
-        if (frontmatter == null) return false;
-        if (this.checkTags(frontmatter.tag)) {
-            return true
-        }
-        if (this.checkTags(frontmatter.tags))  {
-            return true
-        }
+		return false;
+	}
 
-        return false;
-    }
-
-    private checkTags(tags?: TagProperty) {
-        if (tags == null) {
-            return false;
-        }
-        if (typeof tags === "string") {
-            const match = this.checker.matches(tags)
-            return match
-        }
-        if (Array.isArray(tags)) {
-            const match = tags.some(tag => this.checker.matches(tag))
-            return match
-        }
-    }
-
-}
-
-export class FileTagsFilter implements FileFilter {
-
-    private readonly metadataFilter: MetadataFilter;
-
-    constructor(
-        tagChecker: StringChecker,
-        
-        private readonly metadata: MetadataRepository
-    ) {
-        this.metadataFilter = new MetadataTagFilter(tagChecker)
-    }
-
-    async appliesTo(file: TFile): Promise<boolean> {
-        const cache = this.metadata.getFileCache(file)
-        return this.metadataFilter.appliesTo(cache)
-    }
-
-    and<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<TFile & R> {
-        return matchAll(this, filter as FileFilter)
-    }
-
-    or<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<TFile & R> {
-        return or(this, filter as FileFilter)
-    }
+	private checkTags(tags?: TagProperty) {
+		if (tags == null) {
+			return false;
+		}
+		if (typeof tags === "string") {
+			const match = this.checker.appliesTo(tags);
+			return match;
+		}
+		if (Array.isArray(tags)) {
+			const match = tags.some((tag) => tag != null && this.checker.matches(tag));
+			return match;
+		}
+	}
 }

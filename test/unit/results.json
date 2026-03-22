@@ -1,0 +1,1369 @@
+{
+  "numTotalTestSuites": 40,
+  "numPassedTestSuites": 38,
+  "numFailedTestSuites": 2,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 105,
+  "numPassedTests": 105,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "snapshot": {
+    "added": 0,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0,
+    "didUpdate": false
+  },
+  "startTime": 1755967395126,
+  "success": false,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization -",
+          "status": "passed",
+          "title": "-",
+          "duration": 1.8335170000000005,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization hello",
+          "status": "passed",
+          "title": "hello",
+          "duration": 0.3193380000000161,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization hello world",
+          "status": "passed",
+          "title": "hello world",
+          "duration": 0.28030499999999847,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization \"hello world\"",
+          "status": "passed",
+          "title": "\"hello world\"",
+          "duration": 0.33601099999998496,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization \"they said \\\"hello\\\" to each other\"",
+          "status": "passed",
+          "title": "\"they said \\\"hello\\\" to each other\"",
+          "duration": 0.18748099999999113,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization -\"hello world\"",
+          "status": "passed",
+          "title": "-\"hello world\"",
+          "duration": 0.19413299999999367,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization meeting OR work",
+          "status": "passed",
+          "title": "meeting OR work",
+          "duration": 0.21486200000001077,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization meeting (work OR meetup) personal",
+          "status": "passed",
+          "title": "meeting (work OR meetup) personal",
+          "duration": 0.2738109999999949,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization file:.jpg",
+          "status": "passed",
+          "title": "file:.jpg",
+          "duration": 0.4610590000000059,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization file:202209",
+          "status": "passed",
+          "title": "file:202209",
+          "duration": 0.23477300000001833,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization file 202209",
+          "status": "passed",
+          "title": "file 202209",
+          "duration": 0.23461499999999091,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization path:\"Daily notes/2022-07\"",
+          "status": "passed",
+          "title": "path:\"Daily notes/2022-07\"",
+          "duration": 0.17905199999998445,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization content:\"happy cat\"",
+          "status": "passed",
+          "title": "content:\"happy cat\"",
+          "duration": 0.18508099999999672,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization match-case:HappyCat",
+          "status": "passed",
+          "title": "match-case:HappyCat",
+          "duration": 0.15917199999998388,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization ignore-case:ikea",
+          "status": "passed",
+          "title": "ignore-case:ikea",
+          "duration": 0.1474019999999996,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization tag:#work",
+          "status": "passed",
+          "title": "tag:#work",
+          "duration": 0.14489800000001196,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization line:(mix flour)",
+          "status": "passed",
+          "title": "line:(mix flour)",
+          "duration": 0.165631999999988,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization block:(dog cat)",
+          "status": "passed",
+          "title": "block:(dog cat)",
+          "duration": 0.31517400000001317,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization section:(dog cat)",
+          "status": "passed",
+          "title": "section:(dog cat)",
+          "duration": 0.18150700000001052,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization task:call",
+          "status": "passed",
+          "title": "task:call",
+          "duration": 0.15484100000000467,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization task-todo:call",
+          "status": "passed",
+          "title": "task-todo:call",
+          "duration": 0.1512949999999762,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization task-done:call",
+          "status": "passed",
+          "title": "task-done:call",
+          "duration": 0.17319600000001856,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization [aliases]",
+          "status": "passed",
+          "title": "[aliases]",
+          "duration": 0.13413300000001982,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization [aliases:Name]",
+          "status": "passed",
+          "title": "[aliases:Name]",
+          "duration": 0.19572499999998172,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "tokenization"
+          ],
+          "fullName": "tokenization [aliases:Name OR Published]",
+          "status": "passed",
+          "title": "[aliases:Name OR Published]",
+          "duration": 0.1264539999999954,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395703,
+      "endTime": 1755967395710.1958,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/tokenization.test.ts"
+    },
+    {
+      "assertionResults": [],
+      "startTime": 1755967395126,
+      "endTime": 1755967395126,
+      "status": "failed",
+      "message": "No test suite found in file /home/brendan/Documents/obsidian-search/integration/tests/FileProperties.test.ts",
+      "name": "/home/brendan/Documents/obsidian-search/integration/tests/FileProperties.test.ts"
+    },
+    {
+      "assertionResults": [],
+      "startTime": 1755967395126,
+      "endTime": 1755967395126,
+      "status": "failed",
+      "message": "No test suite found in file /home/brendan/Documents/obsidian-search/integration/tests/TaggedFile.test.ts",
+      "name": "/home/brendan/Documents/obsidian-search/integration/tests/TaggedFile.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Emtpy filter"
+          ],
+          "fullName": "Emtpy filter never matches against a file",
+          "status": "passed",
+          "title": "never matches against a file",
+          "duration": 0.8877529999999751,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Emtpy filter",
+            "combining it with another filter"
+          ],
+          "fullName": "Emtpy filter combining it with another filter defers to the 'and'ed filter",
+          "status": "passed",
+          "title": "defers to the 'and'ed filter",
+          "duration": 0.22296199999999544,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Emtpy filter",
+            "combining it with another filter"
+          ],
+          "fullName": "Emtpy filter combining it with another filter defers to the 'or'ed filter",
+          "status": "passed",
+          "title": "defers to the 'or'ed filter",
+          "duration": 0.11827000000002386,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395891,
+      "endTime": 1755967395892.223,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/filters/EmptyFilter.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Filtering by File Name"
+          ],
+          "fullName": "Filtering by File Name applies to a file with a matching basename",
+          "status": "passed",
+          "title": "applies to a file with a matching basename",
+          "duration": 2.058419999999984,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Filtering by File Name"
+          ],
+          "fullName": "Filtering by File Name does not apply to a file with a different basename",
+          "status": "passed",
+          "title": "does not apply to a file with a different basename",
+          "duration": 0.30674199999998564,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395748,
+      "endTime": 1755967395750.3066,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/filters/FileNameFilter.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Filtering by File Path"
+          ],
+          "fullName": "Filtering by File Path applies to a file with a matching path",
+          "status": "passed",
+          "title": "applies to a file with a matching path",
+          "duration": 1.3330699999999922,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Filtering by File Path"
+          ],
+          "fullName": "Filtering by File Path does not apply to a file with a different path",
+          "status": "passed",
+          "title": "does not apply to a file with a different path",
+          "duration": 0.19620199999999954,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395867,
+      "endTime": 1755967395869.1963,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/filters/FilePathFilter.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Filter by property"
+          ],
+          "fullName": "Filter by property does not match files without frontmatter",
+          "status": "passed",
+          "title": "does not match files without frontmatter",
+          "duration": 1.6973389999999995,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Filter by property"
+          ],
+          "fullName": "Filter by property matches files with just the matching property name",
+          "status": "passed",
+          "title": "matches files with just the matching property name",
+          "duration": 0.32979199999999764,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Filter by property"
+          ],
+          "fullName": "Filter by property does not match files without matching property name",
+          "status": "passed",
+          "title": "does not match files without matching property name",
+          "duration": 0.19771800000000894,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Filter by property"
+          ],
+          "fullName": "Filter by property matches files with matching property name and value",
+          "status": "passed",
+          "title": "matches files with matching property name and value",
+          "duration": 0.1758970000000204,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Filter by property"
+          ],
+          "fullName": "Filter by property does not match files with matching property name, but not value",
+          "status": "passed",
+          "title": "does not match files with matching property name, but not value",
+          "duration": 0.16223500000000968,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Filter by property"
+          ],
+          "fullName": "Filter by property does not match files with matching value, but not property name",
+          "status": "passed",
+          "title": "does not match files with matching value, but not property name",
+          "duration": 0.17232799999999315,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395713,
+      "endTime": 1755967395716.1758,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/filters/FilePropertyFilter.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Filtering by Tag"
+          ],
+          "fullName": "Filtering by Tag does not match files with no metadata",
+          "status": "passed",
+          "title": "does not match files with no metadata",
+          "duration": 1.6244569999999783,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Filtering by Tag"
+          ],
+          "fullName": "Filtering by Tag matches files containing the tag",
+          "status": "passed",
+          "title": "matches files containing the tag",
+          "duration": 0.3357290000000148,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Filtering by Tag"
+          ],
+          "fullName": "Filtering by Tag matches files with tags in the frontmatter",
+          "status": "passed",
+          "title": "matches files with tags in the frontmatter",
+          "duration": 0.22329200000001492,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Filtering by Tag"
+          ],
+          "fullName": "Filtering by Tag matches files with array of tags",
+          "status": "passed",
+          "title": "matches files with array of tags",
+          "duration": 0.24405300000000807,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395745,
+      "endTime": 1755967395747.3357,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/filters/TagFilter.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "suite"
+          ],
+          "fullName": "suite multiple tests",
+          "status": "passed",
+          "title": "multiple tests",
+          "duration": 2.8075400000000172,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "suite"
+          ],
+          "fullName": "suite child suite",
+          "status": "passed",
+          "title": "child suite",
+          "duration": 0.6682219999999859,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "suite"
+          ],
+          "fullName": "suite nested suites",
+          "status": "passed",
+          "title": "nested suites",
+          "duration": 0.8603549999999984,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395691,
+      "endTime": 1755967395694.8604,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/integration/framework.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "trimIndent"
+          ],
+          "fullName": "trimIndent empty string",
+          "status": "passed",
+          "title": "empty string",
+          "duration": 2.147816000000006,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "trimIndent"
+          ],
+          "fullName": "trimIndent no new lines",
+          "status": "passed",
+          "title": "no new lines",
+          "duration": 0.5133460000000127,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "trimIndent"
+          ],
+          "fullName": "trimIndent indented line",
+          "status": "passed",
+          "title": "indented line",
+          "duration": 0.5109510000000057,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "trimIndent"
+          ],
+          "fullName": "trimIndent empty first line",
+          "status": "passed",
+          "title": "empty first line",
+          "duration": 0.5656649999999956,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "trimIndent"
+          ],
+          "fullName": "trimIndent tabbed lines",
+          "status": "passed",
+          "title": "tabbed lines",
+          "duration": 0.32100900000000365,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395697,
+      "endTime": 1755967395701.321,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/lib/strings.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Parsing a Group"
+          ],
+          "fullName": "Parsing a Group is unwrapped with a single word",
+          "status": "passed",
+          "title": "is unwrapped with a single word",
+          "duration": 3.5460029999999847,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Group"
+          ],
+          "fullName": "Parsing a Group is unwrapped with a single phrase",
+          "status": "passed",
+          "title": "is unwrapped with a single phrase",
+          "duration": 1.4598649999999793,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Group"
+          ],
+          "fullName": "Parsing a Group is unwrapped with a negated single word",
+          "status": "passed",
+          "title": "is unwrapped with a negated single word",
+          "duration": 1.1709190000000262,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Group"
+          ],
+          "fullName": "Parsing a Group is unwrapped with a negated single phrase",
+          "status": "passed",
+          "title": "is unwrapped with a negated single phrase",
+          "duration": 1.207791000000043,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Group"
+          ],
+          "fullName": "Parsing a Group combines multiple words",
+          "status": "passed",
+          "title": "combines multiple words",
+          "duration": 1.1305439999999862,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Group"
+          ],
+          "fullName": "Parsing a Group can negate nested word",
+          "status": "passed",
+          "title": "can negate nested word",
+          "duration": 0.9700410000000375,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Group"
+          ],
+          "fullName": "Parsing a Group can be negated",
+          "status": "passed",
+          "title": "can be negated",
+          "duration": 1.1838490000000093,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Group"
+          ],
+          "fullName": "Parsing a Group can contain operators",
+          "status": "passed",
+          "title": "can contain operators",
+          "duration": 1.16463600000003,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Group",
+            "handling nested groups"
+          ],
+          "fullName": "Parsing a Group handling nested groups simple, nested hierarchy",
+          "status": "passed",
+          "title": "simple, nested hierarchy",
+          "duration": 3.260534000000007,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Group",
+            "handling nested groups"
+          ],
+          "fullName": "Parsing a Group handling nested groups adjacent nested groups",
+          "status": "passed",
+          "title": "adjacent nested groups",
+          "duration": 4.582026000000042,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Group",
+            "handling nested groups"
+          ],
+          "fullName": "Parsing a Group handling nested groups groups within nested operators",
+          "status": "passed",
+          "title": "groups within nested operators",
+          "duration": 6.250635999999986,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395474,
+      "endTime": 1755967395500.2507,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/parsing/GroupParsing.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Parsing a Phrase"
+          ],
+          "fullName": "Parsing a Phrase matches a single word",
+          "status": "passed",
+          "title": "matches a single word",
+          "duration": 2.978709000000009,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Phrase"
+          ],
+          "fullName": "Parsing a Phrase matches against two words",
+          "status": "passed",
+          "title": "matches against two words",
+          "duration": 0.9082549999999969,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Phrase"
+          ],
+          "fullName": "Parsing a Phrase can contain an escaped quote",
+          "status": "passed",
+          "title": "can contain an escaped quote",
+          "duration": 1.2551139999999918,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Phrase"
+          ],
+          "fullName": "Parsing a Phrase does not have to be closed",
+          "status": "passed",
+          "title": "does not have to be closed",
+          "duration": 0.4235920000000135,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Phrase"
+          ],
+          "fullName": "Parsing a Phrase does not have to close the escaped quote",
+          "status": "passed",
+          "title": "does not have to close the escaped quote",
+          "duration": 0.5312730000000272,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Phrase"
+          ],
+          "fullName": "Parsing a Phrase can be negated",
+          "status": "passed",
+          "title": "can be negated",
+          "duration": 1.090299000000016,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395552,
+      "endTime": 1755967395559.0903,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/parsing/PhraseParsing.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Parsing a Property"
+          ],
+          "fullName": "Parsing a Property matches files with the property",
+          "status": "passed",
+          "title": "matches files with the property",
+          "duration": 4.019728999999984,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Property"
+          ],
+          "fullName": "Parsing a Property matches files with the value for the property",
+          "status": "passed",
+          "title": "matches files with the value for the property",
+          "duration": 1.3939399999999864,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Property"
+          ],
+          "fullName": "Parsing a Property matches files with both properties",
+          "status": "passed",
+          "title": "matches files with both properties",
+          "duration": 0.9825419999999667,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Property"
+          ],
+          "fullName": "Parsing a Property matches files with both properties with value",
+          "status": "passed",
+          "title": "matches files with both properties with value",
+          "duration": 3.190494000000001,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Property"
+          ],
+          "fullName": "Parsing a Property matches files with property containing both values",
+          "status": "passed",
+          "title": "matches files with property containing both values",
+          "duration": 2.403823999999986,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Property"
+          ],
+          "fullName": "Parsing a Property matches files with both properties containing both values",
+          "status": "passed",
+          "title": "matches files with both properties containing both values",
+          "duration": 2.5222009999999955,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395478,
+      "endTime": 1755967395492.5222,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/parsing/PropertyParsing.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Parsing a Regex"
+          ],
+          "fullName": "Parsing a Regex matches a single word",
+          "status": "passed",
+          "title": "matches a single word",
+          "duration": 3.179949999999991,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Regex"
+          ],
+          "fullName": "Parsing a Regex matches against two words",
+          "status": "passed",
+          "title": "matches against two words",
+          "duration": 0.810545999999988,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Regex"
+          ],
+          "fullName": "Parsing a Regex can contain an escaped slash",
+          "status": "passed",
+          "title": "can contain an escaped slash",
+          "duration": 1.5121400000000165,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Regex"
+          ],
+          "fullName": "Parsing a Regex does not have to be closed",
+          "status": "passed",
+          "title": "does not have to be closed",
+          "duration": 0.4225460000000112,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Regex"
+          ],
+          "fullName": "Parsing a Regex does not have to close the escaped regex",
+          "status": "passed",
+          "title": "does not have to close the escaped regex",
+          "duration": 0.5442689999999857,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Regex"
+          ],
+          "fullName": "Parsing a Regex can be negated",
+          "status": "passed",
+          "title": "can be negated",
+          "duration": 1.7646079999999813,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395548,
+      "endTime": 1755967395556.7646,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/parsing/RegexParsing.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Parsing a Word"
+          ],
+          "fullName": "Parsing a Word matches a single word",
+          "status": "passed",
+          "title": "matches a single word",
+          "duration": 2.502251000000001,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Word"
+          ],
+          "fullName": "Parsing a Word matches against two words",
+          "status": "passed",
+          "title": "matches against two words",
+          "duration": 1.041653999999994,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Word"
+          ],
+          "fullName": "Parsing a Word can be negated",
+          "status": "passed",
+          "title": "can be negated",
+          "duration": 0.7965300000000184,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing a Word"
+          ],
+          "fullName": "Parsing a Word can negate only one word of two",
+          "status": "passed",
+          "title": "can negate only one word of two",
+          "duration": 0.5855740000000083,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395703,
+      "endTime": 1755967395708.5857,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/parsing/WordParsing.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "AND operator"
+          ],
+          "fullName": "AND operator requires both filters to match",
+          "status": "passed",
+          "title": "requires both filters to match",
+          "duration": 3.294534999999996,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "AND operator"
+          ],
+          "fullName": "AND operator combines previous filters",
+          "status": "passed",
+          "title": "combines previous filters",
+          "duration": 0.9812590000000228,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "AND operator"
+          ],
+          "fullName": "AND operator works within a group",
+          "status": "passed",
+          "title": "works within a group",
+          "duration": 1.691724000000022,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "AND operator"
+          ],
+          "fullName": "AND operator can be applied to operators",
+          "status": "passed",
+          "title": "can be applied to operators",
+          "duration": 1.4637219999999616,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395473,
+      "endTime": 1755967395481.4636,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/parsing/operators/AndOperator.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Parsing the \"file:\" operator"
+          ],
+          "fullName": "Parsing the \"file:\" operator detects the operator at the beginning of the query",
+          "status": "passed",
+          "title": "detects the operator at the beginning of the query",
+          "duration": 3.465775000000008,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing the \"file:\" operator"
+          ],
+          "fullName": "Parsing the \"file:\" operator ignores the operator without any subquery",
+          "status": "passed",
+          "title": "ignores the operator without any subquery",
+          "duration": 0.7401059999999688,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing the \"file:\" operator"
+          ],
+          "fullName": "Parsing the \"file:\" operator allows the subquery to be negated",
+          "status": "passed",
+          "title": "allows the subquery to be negated",
+          "duration": 0.9240069999999605,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing the \"file:\" operator"
+          ],
+          "fullName": "Parsing the \"file:\" operator accepts a phrase subquery",
+          "status": "passed",
+          "title": "accepts a phrase subquery",
+          "duration": 0.8647910000000252,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing the \"file:\" operator"
+          ],
+          "fullName": "Parsing the \"file:\" operator accepts a grouped subquery",
+          "status": "passed",
+          "title": "accepts a grouped subquery",
+          "duration": 1.1141020000000026,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing the \"file:\" operator"
+          ],
+          "fullName": "Parsing the \"file:\" operator accepts a nested grouped subquery",
+          "status": "passed",
+          "title": "accepts a nested grouped subquery",
+          "duration": 1.4568859999999972,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing the \"file:\" operator"
+          ],
+          "fullName": "Parsing the \"file:\" operator can be negated",
+          "status": "passed",
+          "title": "can be negated",
+          "duration": 1.659402,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395475,
+      "endTime": 1755967395485.6594,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/parsing/operators/FileOperator.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Parsing the \"path:\" operator"
+          ],
+          "fullName": "Parsing the \"path:\" operator detects the operator at the beginning of the query",
+          "status": "passed",
+          "title": "detects the operator at the beginning of the query",
+          "duration": 3.1815509999999563,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing the \"path:\" operator"
+          ],
+          "fullName": "Parsing the \"path:\" operator ignores the operator without any subquery",
+          "status": "passed",
+          "title": "ignores the operator without any subquery",
+          "duration": 0.7138040000000387,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing the \"path:\" operator"
+          ],
+          "fullName": "Parsing the \"path:\" operator allows the subquery to be negated",
+          "status": "passed",
+          "title": "allows the subquery to be negated",
+          "duration": 0.6070209999999747,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing the \"path:\" operator"
+          ],
+          "fullName": "Parsing the \"path:\" operator accepts a phrase subquery",
+          "status": "passed",
+          "title": "accepts a phrase subquery",
+          "duration": 0.6832589999999641,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing the \"path:\" operator"
+          ],
+          "fullName": "Parsing the \"path:\" operator accepts a grouped subquery",
+          "status": "passed",
+          "title": "accepts a grouped subquery",
+          "duration": 0.9089440000000195,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "Parsing the \"path:\" operator"
+          ],
+          "fullName": "Parsing the \"path:\" operator accepts a nested grouped subquery",
+          "status": "passed",
+          "title": "accepts a nested grouped subquery",
+          "duration": 1.0080839999999966,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395473,
+      "endTime": 1755967395480.008,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/parsing/operators/FilePathOperator.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "OR operator"
+          ],
+          "fullName": "OR operator allows either filter to match",
+          "status": "passed",
+          "title": "allows either filter to match",
+          "duration": 4.695138999999983,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "OR operator"
+          ],
+          "fullName": "OR operator combines previous filters",
+          "status": "passed",
+          "title": "combines previous filters",
+          "duration": 2.0258079999999836,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "OR operator"
+          ],
+          "fullName": "OR operator works within a group",
+          "status": "passed",
+          "title": "works within a group",
+          "duration": 3.6551360000000273,
+          "failureMessages": [],
+          "meta": {}
+        },
+        {
+          "ancestorTitles": [
+            "OR operator"
+          ],
+          "fullName": "OR operator can be applied to operators",
+          "status": "passed",
+          "title": "can be applied to operators",
+          "duration": 2.8905879999999797,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395475,
+      "endTime": 1755967395488.8906,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/parsing/operators/OrOperator.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "Parsing the \"tag:\" operator"
+          ],
+          "fullName": "Parsing the \"tag:\" operator ignores the '#' symbol",
+          "status": "passed",
+          "title": "ignores the '#' symbol",
+          "duration": 2.917063000000013,
+          "failureMessages": [],
+          "meta": {}
+        }
+      ],
+      "startTime": 1755967395732,
+      "endTime": 1755967395734.917,
+      "status": "passed",
+      "message": "",
+      "name": "/home/brendan/Documents/obsidian-search/test/parsing/operators/TagOperator.test.ts"
+    }
+  ]
+}

@@ -1,0 +1,751 @@
+[32mPASS[39m test/contract/tests/and.ts
+[31mFAIL[39m test/contract/tests/colon.ts
+    [31mFAIL[39m non-keyword
+        at eval (plugin:compliance:66:8): { query: 'keyword:foo' }
+        at console.log (plugin:compliance:1456:35): Error: Unexpected symbol Colon
+            at Parser.parseFilter (plugin:compliance:2134:19)
+            at Parser.parseTokens (plugin:compliance:2096:45)
+            at Parser.filterFromQuery (plugin:compliance:2052:17)
+            at parse (plugin:compliance:2581:50)
+            at filter (plugin:compliance:2569:21)
+            at filter.next (<anonymous>)
+            at Search.eval [as searchFor] (plugin:compliance:2601:30)
+            at eval (plugin:compliance:67:35)
+            at async runTest (plugin:compliance:1458:5)
+            at async run (plugin:compliance:1450:18)
+        at eval (plugin:compliance:70:8): { matches: [] }
+        at eval (plugin:compliance:72:10): should have logged an error
+[31mFAIL[39m test/contract/tests/colon.ts
+[32mPASS[39m test/contract/tests/file.ts
+[32mPASS[39m test/contract/tests/negation.ts
+[32mPASS[39m test/contract/tests/or.ts
+[32mPASS[39m test/contract/tests/path.ts
+[31mFAIL[39m test/contract/tests/property.ts
+    [31mFAIL[39m [property]
+        [31mFAIL[39m first prop name negated
+            at eval (plugin:compliance:681:10): match files that have property name NOT containing 'prop1 prop2'
+            at propertyTest (plugin:compliance:544:8): { query: '[-prop1 prop2]' }
+            at propertyTest (plugin:compliance:560:8): {
+              matches: [
+                {
+                  name: 'unexpected 4.md',
+                  path: 'unexpected 4.md',
+                  basename: 'unexpected 4',
+                  content: '---\n-prop1: \n---\n',
+                  metadata: [Object]
+                },
+                {
+                  name: 'unexpected 3.md',
+                  path: 'unexpected 3.md',
+                  basename: 'unexpected 3',
+                  content: '---\nprop1: \n---\n',
+                  metadata: [Object]
+                },
+                {
+                  name: 'expected 1.md',
+                  path: 'expected 1.md',
+                  basename: 'expected 1',
+                  content: '---\nprop2: \n---\n',
+                  metadata: [Object]
+                },
+                {
+                  name: 'expected 0.md',
+                  path: 'expected 0.md',
+                  basename: 'expected 0',
+                  content: '---\nprop1: \nprop2: \n---\n',
+                  metadata: [Object]
+                }
+              ]
+            }
+            at propertyTest (plugin:compliance:569:12): expected NOT to find unexpected 3.md in matches
+            at propertyTest (plugin:compliance:569:12): expected NOT to find unexpected 4.md in matches
+            at eval (plugin:compliance:699:10): files without property 'prop1 prop2' should match
+        [31mFAIL[39m second prop name negated
+            at eval (plugin:compliance:702:10): match files with property name containing 'prop1' (second negation breaks parser, so '-prop2' is ignored)
+            at propertyTest (plugin:compliance:544:8): { query: '[prop1 -prop2]' }
+            at propertyTest (plugin:compliance:560:8): {
+              matches: [
+                {
+                  name: 'unexpected 4.md',
+                  path: 'unexpected 4.md',
+                  basename: 'unexpected 4',
+                  content: '---\nprop1 prop2: \n---\n',
+                  metadata: [Object]
+                },
+                {
+                  name: 'unexpected 3.md',
+                  path: 'unexpected 3.md',
+                  basename: 'unexpected 3',
+                  content: '---\nprop1 -prop2: \n---\n',
+                  metadata: [Object]
+                },
+                {
+                  name: 'expected 2.md',
+                  path: 'expected 2.md',
+                  basename: 'expected 2',
+                  content: '---\nprop11: \n---\n',
+                  metadata: [Object]
+                },
+                {
+                  name: 'expected 1.md',
+                  path: 'expected 1.md',
+                  basename: 'expected 1',
+                  content: '---\nprop1: \n---\n',
+                  metadata: [Object]
+                },
+                {
+                  name: 'expected 0.md',
+                  path: 'expected 0.md',
+                  basename: 'expected 0',
+                  content: '---\nprop1: \nprop2: \n---\n',
+                  metadata: [Object]
+                }
+              ]
+            }
+            at propertyTest (plugin:compliance:569:12): expected NOT to find unexpected 3.md in matches
+            at propertyTest (plugin:compliance:569:12): expected NOT to find unexpected 4.md in matches
+    [31mFAIL[39m [property]
+    [31mFAIL[39m [property:value]
+        [31mFAIL[39m [aliases:Name]
+            at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                at Parser.parseFilter (plugin:compliance:2134:19)
+                at Parser.parseTokens (plugin:compliance:2096:45)
+                at Parser.filterFromQuery (plugin:compliance:2052:17)
+                at parse (plugin:compliance:2581:50)
+                at filter (plugin:compliance:2569:21)
+                at filter.next (<anonymous>)
+                at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                at eval (plugin:compliance:889:37)
+                at async runTest (plugin:compliance:1458:5)
+                at async run (plugin:compliance:1450:18)
+            at eval (plugin:compliance:891:12): expected to find 'test.md' in
+[]
+        [31mFAIL[39m [aliases:value1 OR value2]
+            at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                at Parser.parseFilter (plugin:compliance:2134:19)
+                at Parser.parseTokens (plugin:compliance:2096:45)
+                at Parser.filterFromQuery (plugin:compliance:2052:17)
+                at parse (plugin:compliance:2581:50)
+                at filter (plugin:compliance:2569:21)
+                at filter.next (<anonymous>)
+                at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                at eval (plugin:compliance:916:37)
+                at async runTest (plugin:compliance:1458:5)
+                at async run (plugin:compliance:1450:18)
+            at eval (plugin:compliance:918:12): expected to find test.md in
+[]
+            at eval (plugin:compliance:921:12): expected to find 'test1.md' in
+[]
+        [31mFAIL[39m keyword as property name
+            [31mFAIL[39m keyword 'file'
+                [31mFAIL[39m [file:]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [file:value]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+            [31mFAIL[39m keyword 'file'
+            [31mFAIL[39m keyword 'path'
+                [31mFAIL[39m [path:]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [path:value]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+            [31mFAIL[39m keyword 'path'
+            [31mFAIL[39m keyword 'content'
+                [31mFAIL[39m [content:]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [content:value]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+            [31mFAIL[39m keyword 'content'
+            [31mFAIL[39m keyword 'tag'
+                [31mFAIL[39m [tag:]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [tag:value]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+            [31mFAIL[39m keyword 'tag'
+            [31mFAIL[39m keyword 'ignore-case'
+                [31mFAIL[39m [ignore-case]
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [ignore-case:]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [ignore-case:value]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+            [31mFAIL[39m keyword 'ignore-case'
+            [31mFAIL[39m keyword 'match-case'
+                [31mFAIL[39m [match-case]
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [match-case:]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [match-case:value]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+            [31mFAIL[39m keyword 'match-case'
+            [31mFAIL[39m keyword 'block'
+                [31mFAIL[39m [block:]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [block:value]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+            [31mFAIL[39m keyword 'block'
+            [31mFAIL[39m keyword 'line'
+                [31mFAIL[39m [line:]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [line:value]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+            [31mFAIL[39m keyword 'line'
+            [31mFAIL[39m keyword 'section'
+                [31mFAIL[39m [section:]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [section:value]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+            [31mFAIL[39m keyword 'section'
+            [31mFAIL[39m keyword 'task'
+                [31mFAIL[39m [task:]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [task:value]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+            [31mFAIL[39m keyword 'task'
+            [31mFAIL[39m keyword 'task-todo'
+                [31mFAIL[39m [task-todo]
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [task-todo:]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [task-todo:value]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+            [31mFAIL[39m keyword 'task-todo'
+            [31mFAIL[39m keyword 'task-done'
+                [31mFAIL[39m [task-done]
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [task-done:]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+                [31mFAIL[39m [task-done:value]
+                    at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                        at Parser.parseFilter (plugin:compliance:2134:19)
+                        at Parser.parseTokens (plugin:compliance:2096:45)
+                        at Parser.filterFromQuery (plugin:compliance:2052:17)
+                        at parse (plugin:compliance:2581:50)
+                        at filter (plugin:compliance:2569:21)
+                        at filter.next (<anonymous>)
+                        at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                        at eval (plugin:compliance:952:45)
+                        at async runTest (plugin:compliance:1458:5)
+                        at async run (plugin:compliance:1450:18)
+                    at eval (plugin:compliance:953:18): matches:
+[]
+                    at eval (plugin:compliance:955:20): should have found file with property
+            [31mFAIL[39m keyword 'task-done'
+        [31mFAIL[39m keyword as property name
+        [31mFAIL[39m keyword in property value
+            [31mFAIL[39m [prop:file]
+                at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                    at Parser.parseFilter (plugin:compliance:2134:19)
+                    at Parser.parseTokens (plugin:compliance:2096:45)
+                    at Parser.filterFromQuery (plugin:compliance:2052:17)
+                    at parse (plugin:compliance:2581:50)
+                    at filter (plugin:compliance:2569:21)
+                    at filter.next (<anonymous>)
+                    at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                    at eval (plugin:compliance:972:41)
+                    at async runTest (plugin:compliance:1458:5)
+                    at async run (plugin:compliance:1450:18)
+                at eval (plugin:compliance:973:14): matches:
+[]
+                at eval (plugin:compliance:975:16): should have matched against file with keyword as the property value
+                at eval (plugin:compliance:978:16): should have matched against file with keyword IN the property value
+            [33mSKIP[39m [prop:file:value]
+            [31mFAIL[39m [prop:path]
+                at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                    at Parser.parseFilter (plugin:compliance:2134:19)
+                    at Parser.parseTokens (plugin:compliance:2096:45)
+                    at Parser.filterFromQuery (plugin:compliance:2052:17)
+                    at parse (plugin:compliance:2581:50)
+                    at filter (plugin:compliance:2569:21)
+                    at filter.next (<anonymous>)
+                    at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                    at eval (plugin:compliance:972:41)
+                    at async runTest (plugin:compliance:1458:5)
+                    at async run (plugin:compliance:1450:18)
+                at eval (plugin:compliance:973:14): matches:
+[]
+                at eval (plugin:compliance:975:16): should have matched against file with keyword as the property value
+                at eval (plugin:compliance:978:16): should have matched against file with keyword IN the property value
+            [33mSKIP[39m [prop:path:value]
+            [31mFAIL[39m [prop:content]
+                at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                    at Parser.parseFilter (plugin:compliance:2134:19)
+                    at Parser.parseTokens (plugin:compliance:2096:45)
+                    at Parser.filterFromQuery (plugin:compliance:2052:17)
+                    at parse (plugin:compliance:2581:50)
+                    at filter (plugin:compliance:2569:21)
+                    at filter.next (<anonymous>)
+                    at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                    at eval (plugin:compliance:972:41)
+                    at async runTest (plugin:compliance:1458:5)
+                    at async run (plugin:compliance:1450:18)
+                at eval (plugin:compliance:973:14): matches:
+[]
+                at eval (plugin:compliance:975:16): should have matched against file with keyword as the property value
+                at eval (plugin:compliance:978:16): should have matched against file with keyword IN the property value
+            [33mSKIP[39m [prop:content:value]
+            [31mFAIL[39m [prop:tag]
+                at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                    at Parser.parseFilter (plugin:compliance:2134:19)
+                    at Parser.parseTokens (plugin:compliance:2096:45)
+                    at Parser.filterFromQuery (plugin:compliance:2052:17)
+                    at parse (plugin:compliance:2581:50)
+                    at filter (plugin:compliance:2569:21)
+                    at filter.next (<anonymous>)
+                    at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                    at eval (plugin:compliance:972:41)
+                    at async runTest (plugin:compliance:1458:5)
+                    at async run (plugin:compliance:1450:18)
+                at eval (plugin:compliance:973:14): matches:
+[]
+                at eval (plugin:compliance:975:16): should have matched against file with keyword as the property value
+                at eval (plugin:compliance:978:16): should have matched against file with keyword IN the property value
+            [33mSKIP[39m [prop:tag:value]
+            [31mFAIL[39m [prop:ignore-case]
+                at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                    at Parser.parseFilter (plugin:compliance:2134:19)
+                    at Parser.parseTokens (plugin:compliance:2096:45)
+                    at Parser.filterFromQuery (plugin:compliance:2052:17)
+                    at parse (plugin:compliance:2581:50)
+                    at filter (plugin:compliance:2569:21)
+                    at filter.next (<anonymous>)
+                    at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                    at eval (plugin:compliance:972:41)
+                    at async runTest (plugin:compliance:1458:5)
+                    at async run (plugin:compliance:1450:18)
+                at eval (plugin:compliance:973:14): matches:
+[]
+                at eval (plugin:compliance:975:16): should have matched against file with keyword as the property value
+                at eval (plugin:compliance:978:16): should have matched against file with keyword IN the property value
+            [33mSKIP[39m [prop:ignore-case:value]
+            [31mFAIL[39m [prop:match-case]
+                at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                    at Parser.parseFilter (plugin:compliance:2134:19)
+                    at Parser.parseTokens (plugin:compliance:2096:45)
+                    at Parser.filterFromQuery (plugin:compliance:2052:17)
+                    at parse (plugin:compliance:2581:50)
+                    at filter (plugin:compliance:2569:21)
+                    at filter.next (<anonymous>)
+                    at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                    at eval (plugin:compliance:972:41)
+                    at async runTest (plugin:compliance:1458:5)
+                    at async run (plugin:compliance:1450:18)
+                at eval (plugin:compliance:973:14): matches:
+[]
+                at eval (plugin:compliance:975:16): should have matched against file with keyword as the property value
+                at eval (plugin:compliance:978:16): should have matched against file with keyword IN the property value
+            [33mSKIP[39m [prop:match-case:value]
+            [31mFAIL[39m [prop:block]
+                at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                    at Parser.parseFilter (plugin:compliance:2134:19)
+                    at Parser.parseTokens (plugin:compliance:2096:45)
+                    at Parser.filterFromQuery (plugin:compliance:2052:17)
+                    at parse (plugin:compliance:2581:50)
+                    at filter (plugin:compliance:2569:21)
+                    at filter.next (<anonymous>)
+                    at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                    at eval (plugin:compliance:972:41)
+                    at async runTest (plugin:compliance:1458:5)
+                    at async run (plugin:compliance:1450:18)
+                at eval (plugin:compliance:973:14): matches:
+[]
+                at eval (plugin:compliance:975:16): should have matched against file with keyword as the property value
+                at eval (plugin:compliance:978:16): should have matched against file with keyword IN the property value
+            [33mSKIP[39m [prop:block:value]
+            [31mFAIL[39m [prop:line]
+                at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                    at Parser.parseFilter (plugin:compliance:2134:19)
+                    at Parser.parseTokens (plugin:compliance:2096:45)
+                    at Parser.filterFromQuery (plugin:compliance:2052:17)
+                    at parse (plugin:compliance:2581:50)
+                    at filter (plugin:compliance:2569:21)
+                    at filter.next (<anonymous>)
+                    at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                    at eval (plugin:compliance:972:41)
+                    at async runTest (plugin:compliance:1458:5)
+                    at async run (plugin:compliance:1450:18)
+                at eval (plugin:compliance:973:14): matches:
+[]
+                at eval (plugin:compliance:975:16): should have matched against file with keyword as the property value
+                at eval (plugin:compliance:978:16): should have matched against file with keyword IN the property value
+            [33mSKIP[39m [prop:line:value]
+            [31mFAIL[39m [prop:section]
+                at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                    at Parser.parseFilter (plugin:compliance:2134:19)
+                    at Parser.parseTokens (plugin:compliance:2096:45)
+                    at Parser.filterFromQuery (plugin:compliance:2052:17)
+                    at parse (plugin:compliance:2581:50)
+                    at filter (plugin:compliance:2569:21)
+                    at filter.next (<anonymous>)
+                    at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                    at eval (plugin:compliance:972:41)
+                    at async runTest (plugin:compliance:1458:5)
+                    at async run (plugin:compliance:1450:18)
+                at eval (plugin:compliance:973:14): matches:
+[]
+                at eval (plugin:compliance:975:16): should have matched against file with keyword as the property value
+                at eval (plugin:compliance:978:16): should have matched against file with keyword IN the property value
+            [33mSKIP[39m [prop:section:value]
+            [31mFAIL[39m [prop:task]
+                at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                    at Parser.parseFilter (plugin:compliance:2134:19)
+                    at Parser.parseTokens (plugin:compliance:2096:45)
+                    at Parser.filterFromQuery (plugin:compliance:2052:17)
+                    at parse (plugin:compliance:2581:50)
+                    at filter (plugin:compliance:2569:21)
+                    at filter.next (<anonymous>)
+                    at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                    at eval (plugin:compliance:972:41)
+                    at async runTest (plugin:compliance:1458:5)
+                    at async run (plugin:compliance:1450:18)
+                at eval (plugin:compliance:973:14): matches:
+[]
+                at eval (plugin:compliance:975:16): should have matched against file with keyword as the property value
+                at eval (plugin:compliance:978:16): should have matched against file with keyword IN the property value
+            [33mSKIP[39m [prop:task:value]
+            [31mFAIL[39m [prop:task-todo]
+                at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                    at Parser.parseFilter (plugin:compliance:2134:19)
+                    at Parser.parseTokens (plugin:compliance:2096:45)
+                    at Parser.filterFromQuery (plugin:compliance:2052:17)
+                    at parse (plugin:compliance:2581:50)
+                    at filter (plugin:compliance:2569:21)
+                    at filter.next (<anonymous>)
+                    at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                    at eval (plugin:compliance:972:41)
+                    at async runTest (plugin:compliance:1458:5)
+                    at async run (plugin:compliance:1450:18)
+                at eval (plugin:compliance:973:14): matches:
+[]
+                at eval (plugin:compliance:975:16): should have matched against file with keyword as the property value
+                at eval (plugin:compliance:978:16): should have matched against file with keyword IN the property value
+            [33mSKIP[39m [prop:task-todo:value]
+            [31mFAIL[39m [prop:task-done]
+                at console.log (plugin:compliance:1456:35): Error: Unexpected symbol RBracket
+                    at Parser.parseFilter (plugin:compliance:2134:19)
+                    at Parser.parseTokens (plugin:compliance:2096:45)
+                    at Parser.filterFromQuery (plugin:compliance:2052:17)
+                    at parse (plugin:compliance:2581:50)
+                    at filter (plugin:compliance:2569:21)
+                    at filter.next (<anonymous>)
+                    at Search.eval [as searchFor] (plugin:compliance:2601:30)
+                    at eval (plugin:compliance:972:41)
+                    at async runTest (plugin:compliance:1458:5)
+                    at async run (plugin:compliance:1450:18)
+                at eval (plugin:compliance:973:14): matches:
+[]
+                at eval (plugin:compliance:975:16): should have matched against file with keyword as the property value
+                at eval (plugin:compliance:978:16): should have matched against file with keyword IN the property value
+            [33mSKIP[39m [prop:task-done:value]
+        [31mFAIL[39m keyword in property value
+    [31mFAIL[39m [property:value]
+[31mFAIL[39m test/contract/tests/property.ts
+[32mPASS[39m test/contract/tests/tags.ts
+[32mPASS[39m test/contract/tests/words.ts
+<<FAILED>>

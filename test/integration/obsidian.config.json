@@ -1,0 +1,10 @@
+
+{
+	"$schema": "./obsidian.config.schema.json",
+	"obsidian": {
+		"install": "flatpak run md.obsidian.Obsidian",
+		"support": "/home/brendan/.var/app/md.obsidian.Obsidian/config/obsidian/obsidian.json",
+		"launch": "flatpak run md.obsidian.Obsidian",
+		"launch_vault": "flatpak run md.obsidian.Obsidian \"obsidian://open?path={0}\""
+	}
+}

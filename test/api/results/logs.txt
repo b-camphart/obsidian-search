@@ -1,0 +1,3 @@
+[32mPASS[39m /properties.ts
+[32mPASS[39m /tags.ts
+<<PASSED>>

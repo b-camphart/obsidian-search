@@ -1,26 +1,25 @@
-import { TFile } from "obsidian";
-import { StringChecker } from "src/checkers/StringChecker";
-import { FileFilter } from "src/filters/FileFilter";
-import { matchAll } from "./MatchAllFilter";
+import type * as obsidian from "obsidian";
+import type { FileFilter } from "./FileFilter";
+import { type StringFilter } from "./strings";
+import { Filter } from "./Filter";
 
-export function path(checker: StringChecker): FileFilter<Pick<TFile, 'path'>> {
-    return new FilePathFilter(checker)
+export function path(matcher: StringFilter): FileFilter {
+	return new PathFilter({ path: matcher });
 }
 
-export class FilePathFilter implements FileFilter<Pick<TFile, 'path'>> {
+export class PathFilter extends Filter<Pick<obsidian.TFile, "path">> {
+	path: StringFilter;
 
-    constructor(private readonly checker: StringChecker) {}
+	constructor(def: Pick<PathFilter, "path">) {
+		super();
+		this.path = def.path;
+	}
 
-    async appliesTo(file: Pick<TFile, 'path'>): Promise<boolean> {
-        return this.checker.matches(file.path)
-    }
+	override appliesTo(this: PathFilter, file: Pick<obsidian.TFile, "path">): boolean {
+		return this.path.appliesTo(file.path);
+	}
 
-    and<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<Pick<TFile, "path"> & R> {        
-        return matchAll(this, filter as FileFilter)
-    }
-
-    or<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<Pick<TFile, "path"> & R> {
-        return matchAll(this, filter as FileFilter)
-    }
-
+	override toQuery(this: PathFilter): string {
+		return `path:${this.path.toQuery()}`;
+	}
 }

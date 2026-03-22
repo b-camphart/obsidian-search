@@ -1,0 +1,8 @@
+{
+	"hashes": {
+		"obsidian-search.js": "933f514913c964e7b4dfb7b81092c125",
+		"obsidian-search.cjs": "9ee99f66995bc81f3063289aefb81191"
+	},
+	"obsidian_version": "1.8.7(@codemirror/state@6.5.2)(@codemirror/view@6.38.1)",
+	"status": "FAILED"
+}

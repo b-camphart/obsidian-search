@@ -1,0 +1,773 @@
+Received URL action {
+  path: 'C:\\Users\\minimal\\src\\obsidian-search\\node_modules\\.cache\\obsidian-test\\obsidian-search-conform-vault',
+  action: 'open',
+  file: ''
+}
+▶ Search contract
+  ▶ Simple Search
+    ▶ Search for a single word
+      ▶ Example: [34m`work`[0m
+        ▶ matches files containing the word
+          [32m✔ matches a file with { name: 'work' } [90m(27.9239ms)[39m[39m
+          [32m✔ matches a file with { name: 'works' } [90m(12.5071ms)[39m[39m
+          [32m✔ matches a file with { name: 'work meeting' } [90m(12.4071ms)[39m[39m
+          [32m✔ matches a file with { name: 'homework' } [90m(13.8245ms)[39m[39m
+          [32m✔ matches a file with { content: 'work' } [90m(20.403ms)[39m[39m
+          [32m✔ matches a file with { content: 'works' } [90m(37.4716ms)[39m[39m
+          [32m✔ matches a file with { content: 'homework' } [90m(14.1571ms)[39m[39m
+          [32m✔ matches a file with { properties: { work: '' } } [90m(29.0242ms)[39m[39m
+          [32m✔ matches a file with { properties: { works: '' } } [90m(13.2995ms)[39m[39m
+          [32m✔ matches a file with { properties: { homework: '' } } [90m(12.7308ms)[39m[39m
+          [32m✔ matches a file with { properties: { used_in: 'work' } } [90m(14.8605ms)[39m[39m
+          [32m✔ matches a file with { properties: { used_in: 'works' } } [90m(19.7514ms)[39m[39m
+          [32m✔ matches a file with { properties: { used_in: 'homework' } } [90m(13.2255ms)[39m[39m
+          [32m✔ matches a file with { tags: [ 'work' ] } [90m(13.0819ms)[39m[39m
+          [32m✔ matches a file with { tags: [ 'works' ] } [90m(14.2338ms)[39m[39m
+          [32m✔ matches a file with { tags: [ 'homework' ] } [90m(14.9907ms)[39m[39m
+          [32m✔ matches a file with { tags: [ 'homework', 'Q4' ] } [90m(14.7674ms)[39m[39m
+        [32m✔ matches files containing the word [90m(304.0978ms)[39m[39m
+        ▶ does not match based on folder names
+          [32m✔ does not match a file with { path: 'work/meeting.md' } [90m(21.2632ms)[39m[39m
+        [32m✔ does not match based on folder names [90m(21.4839ms)[39m[39m
+      [32m✔ Example: [34m`work`[0m [90m(326.1514ms)[39m[39m
+    [32m✔ Search for a single word [90m(328.5188ms)[39m[39m
+    ▶ Quoted Word Search
+      ▶ Search for an exact word using quotes
+        ▶ Example: [34m`"work"`[0m
+          ▶ matches file names containing the word
+            [32m✔ matches a file with { name: 'work' } [90m(12.7357ms)[39m[39m
+            [32m✔ matches a file with { name: 'homework' } [90m(9.3281ms)[39m[39m
+            [32m✔ matches a file with { name: 'working' } [90m(10.4711ms)[39m[39m
+          [32m✔ matches file names containing the word [90m(33.396ms)[39m[39m
+          ▶ matches file content containing the EXACT word
+            [32m✔ matches a file with { content: 'work' } [90m(9.6395ms)[39m[39m
+            [32m✔ matches a file with { content: 'we met at work' } [90m(11.5834ms)[39m[39m
+            [32m✔ matches a file with { content: 'work is my life' } [90m(9.9769ms)[39m[39m
+            [32m✔ matches a file with { content: 'I go to work so I can afford to play' } [90m(11.9018ms)[39m[39m
+            [32m✔ matches a file with { content: 'work-o-holic' }, because hyphen acts as word separator [90m(12.0316ms)[39m[39m
+            [32m✔ matches a file with { content: "work'd" }, because apostraphe acts as word separator [90m(11.1487ms)[39m[39m
+          [32m✔ matches file content containing the EXACT word [90m(67.4457ms)[39m[39m
+          ▶ does not match file content with the word embedded
+            [32m✔ does not match a file with { content: 'homework' } [90m(12.0237ms)[39m[39m
+            [32m✔ does not match a file with { content: 'working' } [90m(16.5565ms)[39m[39m
+            [32m✔ does not match a file with { content: 'networking' } [90m(17.1189ms)[39m[39m
+          [32m✔ does not match file content with the word embedded [90m(46.405ms)[39m[39m
+          ▶ does not match folder names
+            [32m✔ does not match a file with { path: 'some\\work\\meetings.md' } [90m(36.0114ms)[39m[39m
+          [32m✔ does not match folder names [90m(36.2627ms)[39m[39m
+        [32m✔ Example: [34m`"work"`[0m [90m(184.0717ms)[39m[39m
+      [32m✔ Search for an exact word using quotes [90m(185.1439ms)[39m[39m
+    [32m✔ Quoted Word Search [90m(185.4393ms)[39m[39m
+    ▶ Quoted Phrase Search
+      ▶ Search for an exact phrase using quotes
+        ▶ Example: [34m`"work meeting"`[0m
+          ▶ matches file names containing the phrase
+            [32m✔ matches a file with { name: 'work meeting' } [90m(18.128ms)[39m[39m
+            [32m✔ matches a file with { name: 'work meetings' } [90m(8.0701ms)[39m[39m
+            [32m✔ matches a file with { name: 'homework meetings' } [90m(11.4449ms)[39m[39m
+          [32m✔ matches file names containing the phrase [90m(38.2426ms)[39m[39m
+          ▶ matches file content containing the EXACT phrase
+            [32m✔ matches a file with { content: 'work meeting' } [90m(13.5861ms)[39m[39m
+            [32m✔ matches a file with { content: 'home work meeting' } [90m(15.5316ms)[39m[39m
+            [32m✔ matches a file with { properties: { 'work meeting': '' } } [90m(13.0574ms)[39m[39m
+            [32m✔ matches a file with { properties: { 'home work meeting': '' } } [90m(13.7951ms)[39m[39m
+            [32m✔ matches a file with { properties: { used_in: 'work meeting' } } [90m(21.6333ms)[39m[39m
+            [32m✔ matches a file with { properties: { used_in: 'home work meeting' } } [90m(16.3104ms)[39m[39m
+          [32m✔ matches file content containing the EXACT phrase [90m(95.377ms)[39m[39m
+          ▶ does not match file content with the phrase embedded
+            [32m✔ does not match a file with { content: 'work meetings' } [90m(13.7316ms)[39m[39m
+            [32m✔ does not match a file with { content: 'homework meeting' } [90m(12.4771ms)[39m[39m
+            [32m✔ does not match a file with { properties: { 'work meetings': '' } } [90m(14.878ms)[39m[39m
+            [32m✔ does not match a file with { properties: { 'homework meeting': '' } } [90m(14.3279ms)[39m[39m
+            [32m✔ does not match a file with { properties: { used_in: 'work meetings' } } [90m(17.4168ms)[39m[39m
+            [32m✔ does not match a file with { properties: { used_in: 'homework meeting' } } [90m(14.5381ms)[39m[39m
+          [32m✔ does not match file content with the phrase embedded [90m(88.4473ms)[39m[39m
+          ▶ does not match partial or reordered phrases
+            [32m✔ does not match a file with { name: 'meeting work' } [90m(8.3168ms)[39m[39m
+            [32m✔ does not match a file with { name: 'work  meeting' } [90m(12.2417ms)[39m[39m
+            [32m✔ does not match a file with { content: 'work  meeting' } [90m(13.0089ms)[39m[39m
+            [32m✔ does not match a file with { content: 'work\nmeeting' } [90m(15.734ms)[39m[39m
+            [32m✔ does not match a file with { content: 'work weekly meeting' } [90m(12.3268ms)[39m[39m
+            [32m✔ does not match a file with { content: 'meeting work' } [90m(13.7418ms)[39m[39m
+          [32m✔ does not match partial or reordered phrases [90m(76.8837ms)[39m[39m
+          ▶ does not match based on folder names
+            [32m✔ does not match a file with { path: 'work/meeting notes.md' } [90m(13.6896ms)[39m[39m
+          [32m✔ does not match based on folder names [90m(14.0981ms)[39m[39m
+        [32m✔ Example: [34m`"work meeting"`[0m [90m(313.9814ms)[39m[39m
+      [32m✔ Search for an exact phrase using quotes [90m(315.0169ms)[39m[39m
+      ▶ Search for a tag (tags cannot contain spaces)
+        ▶ Example: [34m`"work_meeting"`[0m
+          ▶ matches files with tags containing the phrase
+            [32m✔ matches a file with { tags: [ 'work_meeting' ] } [90m(25.6991ms)[39m[39m
+          [32m✔ matches files with tags containing the phrase [90m(25.9294ms)[39m[39m
+          ▶ does not match files without tags containing the phrase
+            [32m✔ does not match a file with { tags: [] } [90m(13.4586ms)[39m[39m
+            [32m✔ does not match a file with { tags: [ 'work' ] } [90m(12.6171ms)[39m[39m
+            [32m✔ does not match a file with { tags: [ 'meeting' ] } [90m(13.8249ms)[39m[39m
+          [32m✔ does not match files without tags containing the phrase [90m(40.7816ms)[39m[39m
+          ▶ does not match files without the EXACT tag
+            [32m✔ does not match a file with { tags: [ 'work_meetings' ] } [90m(26.7726ms)[39m[39m
+          [32m✔ does not match files without the EXACT tag [90m(26.9443ms)[39m[39m
+        [32m✔ Example: [34m`"work_meeting"`[0m [90m(93.9673ms)[39m[39m
+      [32m✔ Search for a tag (tags cannot contain spaces) [90m(94.4708ms)[39m[39m
+      ▶ Search for a phrase with quotation marks
+        ▶ Example: [34m`"he said \"yes,\" and left`[0m
+          ▶ matches file content with the exact phrase
+            [32m✔ matches a file with { content: '"he said "yes," and left' } [90m(15.1244ms)[39m[39m
+            [32m✔ matches a file with { properties: { '"he said "yes," and left': '' } } [90m(19.1832ms)[39m[39m
+            [32m✔ matches a file with { properties: { quote: '"he said "yes," and left' } } [90m(13.9344ms)[39m[39m
+          [32m✔ matches file content with the exact phrase [90m(48.7717ms)[39m[39m
+          ▶ does not match files without the escaped quotes
+            [32m✔ does not match a file with { content: '"he said yes, and left' } [90m(15.0733ms)[39m[39m
+          [32m✔ does not match files without the escaped quotes [90m(15.2852ms)[39m[39m
+        [32m✔ Example: [34m`"he said \"yes,\" and left`[0m [90m(64.2792ms)[39m[39m
+      [32m✔ Search for a phrase with quotation marks [90m(64.667ms)[39m[39m
+      ▶ Edge case: missing the closing quote
+        ▶ Example: [34m`"work meeting`[0m
+          ▶ matches file names containing the phrase
+            [32m✔ matches a file with { name: 'work meeting' } [90m(11.41ms)[39m[39m
+            [32m✔ matches a file with { name: 'work meetings' } [90m(7.9829ms)[39m[39m
+            [32m✔ matches a file with { name: 'homework meetings' } [90m(10.1793ms)[39m[39m
+          [32m✔ matches file names containing the phrase [90m(30.3349ms)[39m[39m
+          ▶ matches file content containing the EXACT phrase
+            [32m✔ matches a file with { content: 'work meeting' } [90m(10.1101ms)[39m[39m
+            [32m✔ matches a file with { content: 'home work meeting' } [90m(12.6634ms)[39m[39m
+            [32m✔ matches a file with { properties: { 'work meeting': '' } } [90m(12.1662ms)[39m[39m
+            [32m✔ matches a file with { properties: { 'home work meeting': '' } } [90m(11.1576ms)[39m[39m
+            [32m✔ matches a file with { properties: { used_in: 'work meeting' } } [90m(11.6019ms)[39m[39m
+            [32m✔ matches a file with { properties: { used_in: 'home work meeting' } } [90m(12.8291ms)[39m[39m
+          [32m✔ matches file content containing the EXACT phrase [90m(71.74ms)[39m[39m
+          ▶ does not match file content with the phrase embedded
+            [32m✔ does not match a file with { content: 'work meetings' } [90m(12.4089ms)[39m[39m
+            [32m✔ does not match a file with { content: 'homework meeting' } [90m(11.6777ms)[39m[39m
+            [32m✔ does not match a file with { properties: { 'work meetings': '' } } [90m(11.6124ms)[39m[39m
+            [32m✔ does not match a file with { properties: { 'homework meeting': '' } } [90m(13.0661ms)[39m[39m
+            [32m✔ does not match a file with { properties: { used_in: 'work meetings' } } [90m(13.501ms)[39m[39m
+            [32m✔ does not match a file with { properties: { used_in: 'homework meeting' } } [90m(12.7155ms)[39m[39m
+          [32m✔ does not match file content with the phrase embedded [90m(76.1935ms)[39m[39m
+          ▶ does not match partial or reordered phrases
+            [32m✔ does not match a file with { name: 'meeting work' } [90m(10.7984ms)[39m[39m
+            [32m✔ does not match a file with { content: 'work weekly meeting' } [90m(11.1657ms)[39m[39m
+            [32m✔ does not match a file with { content: 'meeting work' } [90m(13.1029ms)[39m[39m
+          [32m✔ does not match partial or reordered phrases [90m(35.5323ms)[39m[39m
+          ▶ does not match based on folder names
+            [32m✔ does not match a file with { path: 'work/meeting notes.md' } [90m(24.9413ms)[39m[39m
+          [32m✔ does not match based on folder names [90m(25.1626ms)[39m[39m
+        [32m✔ Example: [34m`"work meeting`[0m [90m(239.626ms)[39m[39m
+      [32m✔ Edge case: missing the closing quote [90m(240.7002ms)[39m[39m
+    [32m✔ Quoted Phrase Search [90m(715.4688ms)[39m[39m
+  [32m✔ Simple Search [90m(1230.2551ms)[39m[39m
+  ▶ Grouping
+    ▶ Basic Grouping
+      ▶ Search for two words
+        ▶ Example: [34m`work meeting`[0m
+          ▶ matches files with BOTH words
+            [32m✔ matches a file with { name: 'work meeting' } [90m(17.546ms)[39m[39m
+            [32m✔ matches a file with { name: 'meetings for work' } [90m(9.1562ms)[39m[39m
+            [32m✔ matches a file with { content: 'work meetings are hard' } [90m(19.5384ms)[39m[39m
+            [32m✔ matches a file with { properties: { work: '', meeting: '' } } [90m(13.8075ms)[39m[39m
+            [32m✔ matches a file with { properties: { work: 'meeting' } } [90m(21.0164ms)[39m[39m
+            [32m✔ matches a file with { properties: { 'work meeting': '' } } [90m(14.04ms)[39m[39m
+            [32m✔ matches a file with { properties: { type: 'work meeting' } } [90m(14.0628ms)[39m[39m
+            [32m✔ matches a file with { properties: { used_in: 'work', type: 'meeting' } } [90m(13.1537ms)[39m[39m
+            [32m✔ matches a file with { tags: [ 'work', 'meeting' ] } [90m(13.4861ms)[39m[39m
+          [32m✔ matches files with BOTH words [90m(137.2757ms)[39m[39m
+          ▶ does not match files with only one, or no words
+            [32m✔ does not match a file with { name: 'play' } [90m(11.8448ms)[39m[39m
+            [32m✔ does not match a file with { name: 'work' } [90m(12.1022ms)[39m[39m
+            [32m✔ does not match a file with { name: 'meeting' } [90m(11.8023ms)[39m[39m
+          [32m✔ does not match files with only one, or no words [90m(36.3385ms)[39m[39m
+        [32m✔ Example: [34m`work meeting`[0m [90m(173.8313ms)[39m[39m
+      [32m✔ Search for two words [90m(174.2802ms)[39m[39m
+      ▶ Search for three words
+        ▶ Example: [34m`work meeting notes`[0m
+          ▶ matches files with ALL three words
+            [32m✔ matches a file with { name: 'work meeting notes' } [90m(10.2315ms)[39m[39m
+            [32m✔ matches a file with { content: 'notes from the work meeting' } [90m(15.5135ms)[39m[39m
+            [32m✔ matches a file with { properties: { work: '', meeting: '', notes: '' } } [90m(16.918ms)[39m[39m
+            [32m✔ matches a file with { tags: [ 'work', 'meeting', 'notes' ] } [90m(14.6843ms)[39m[39m
+          [32m✔ matches files with ALL three words [90m(58.2322ms)[39m[39m
+          ▶ does not match files missing one or more words
+            [32m✔ does not match a file with { name: 'work meeting' } [90m(11.0641ms)[39m[39m
+            [32m✔ does not match a file with { name: 'meeting notes' } [90m(9.9262ms)[39m[39m
+            [32m✔ does not match a file with { name: 'work notes' } [90m(8.9069ms)[39m[39m
+          [32m✔ does not match files missing one or more words [90m(30.3282ms)[39m[39m
+        [32m✔ Example: [34m`work meeting notes`[0m [90m(88.7719ms)[39m[39m
+      [32m✔ Search for three words [90m(89.1278ms)[39m[39m
+    [32m✔ Basic Grouping [90m(263.5908ms)[39m[39m
+    ▶ Parenthesis Grouping
+      ▶ Search with grouped terms
+        ▶ Example: [34m`(work meeting) notes`[0m
+          ▶ matches files containing grouped AND additional term
+            [32m✔ matches a file with { content: 'notes from the work meeting' } [90m(18.3866ms)[39m[39m
+            [32m✔ matches a file with { name: 'work meeting notes' } [90m(14.1686ms)[39m[39m
+          [32m✔ matches files containing grouped AND additional term [90m(32.8785ms)[39m[39m
+          ▶ does not match files missing grouped terms
+            [32m✔ does not match a file with { content: 'work notes only' } [90m(12.8967ms)[39m[39m
+            [32m✔ does not match a file with { content: 'meeting notes only' } [90m(16.9368ms)[39m[39m
+          [32m✔ does not match files missing grouped terms [90m(30.2331ms)[39m[39m
+        [32m✔ Example: [34m`(work meeting) notes`[0m [90m(63.3396ms)[39m[39m
+      [32m✔ Search with grouped terms [90m(63.6372ms)[39m[39m
+    [32m✔ Parenthesis Grouping [90m(63.8233ms)[39m[39m
+    ▶ Edge Cases
+      ▶ Word directly followed by quote (no separating space)
+        ▶ Example: [34m`work"meeting"`[0m
+          ▶ matches files with the exact term
+            [90m﹣ matches a file with { name: 'work"meeting"' } [90m(0.679ms)[39m # Error: Failed to create file
+Error: File name cannot contain any of the following characters: * " \ / < > : | ?[39m
+            [32m✔ matches a file with { content: 'discussion about work"meeting"' } [90m(15.3887ms)[39m[39m
+          [32m✔ matches files with the exact term [90m(16.4763ms)[39m[39m
+          ▶ does not match files with the individual words
+            [32m✔ does not match a file with { name: 'work meeting' } [90m(35.9177ms)[39m[39m
+            [32m✔ does not match a file with { name: 'work' } [90m(10.235ms)[39m[39m
+            [32m✔ does not match a file with { name: 'meeting' } [90m(9.023ms)[39m[39m
+          [32m✔ does not match files with the individual words [90m(55.7243ms)[39m[39m
+        [32m✔ Example: [34m`work"meeting"`[0m [90m(72.4392ms)[39m[39m
+      [32m✔ Word directly followed by quote (no separating space) [90m(73.103ms)[39m[39m
+    [32m✔ Edge Cases [90m(73.3628ms)[39m[39m
+  [32m✔ Grouping [90m(401.1743ms)[39m[39m
+  ▶ Negation
+    ▶ Single Term Negation
+      ▶ Negate a single word
+        ▶ Example: [34m`-work`[0m
+          ▶ matches files that do NOT contain the word
+            [32m✔ matches a file with { name: 'meeting' } [90m(21.9381ms)[39m[39m
+            [32m✔ matches a file with { content: 'planning session' } [90m(13.948ms)[39m[39m
+            [32m✔ matches a file with { tags: [ 'personal' ] } [90m(13.7093ms)[39m[39m
+          [32m✔ matches files that do NOT contain the word [90m(50.0994ms)[39m[39m
+          ▶ does not match files that contain the word anywhere
+            [32m✔ does not match a file with { name: 'work' } [90m(11.8895ms)[39m[39m
+            [32m✔ does not match a file with { name: 'work meeting' } [90m(11.6932ms)[39m[39m
+            [32m✔ does not match a file with { content: 'deep work session' } [90m(11.6855ms)[39m[39m
+            [32m✔ does not match a file with { properties: { type: 'work' } } [90m(14.1251ms)[39m[39m
+          [32m✔ does not match files that contain the word anywhere [90m(50.2628ms)[39m[39m
+        [32m✔ Example: [34m`-work`[0m [90m(100.659ms)[39m[39m
+      [32m✔ Negate a single word [90m(101.4425ms)[39m[39m
+      ▶ Negate a phrase
+        ▶ Example: [34m`-"work meeting"`[0m
+          ▶ matches files that do NOT contain the phrase
+            [32m✔ matches a file with { name: 'work' } [90m(13.3029ms)[39m[39m
+            [32m✔ matches a file with { name: 'meeting notes' } [90m(9.2941ms)[39m[39m
+            [32m✔ matches a file with { content: 'meeting for work' } [90m(10.709ms)[39m[39m
+          [32m✔ matches files that do NOT contain the phrase [90m(34.0349ms)[39m[39m
+          ▶ does not match files that contain the exact phrase
+            [32m✔ does not match a file with { name: 'work meeting' } [90m(9.1044ms)[39m[39m
+            [32m✔ does not match a file with { content: 'notes from the work meeting' } [90m(10.809ms)[39m[39m
+          [32m✔ does not match files that contain the exact phrase [90m(20.2139ms)[39m[39m
+        [32m✔ Example: [34m`-"work meeting"`[0m [90m(54.4407ms)[39m[39m
+      [32m✔ Negate a phrase [90m(54.978ms)[39m[39m
+    [32m✔ Single Term Negation [90m(156.7044ms)[39m[39m
+    ▶ Partial Negation
+      ▶ Negate first term
+        ▶ Example: [34m`-work meeting`[0m
+          ▶ matches contains 'meeting' AND NOT 'work'
+            [32m✔ matches a file with { name: 'meeting notes' } [90m(10.83ms)[39m[39m
+            [32m✔ matches a file with { content: 'team meeting agenda' } [90m(9.6907ms)[39m[39m
+          [32m✔ matches contains 'meeting' AND NOT 'work' [90m(20.8597ms)[39m[39m
+          ▶ does not match contains 'work'
+            [32m✔ does not match a file with { name: 'work meeting' } [90m(11.951ms)[39m[39m
+            [32m✔ does not match a file with { content: 'meeting about work' } [90m(9.6953ms)[39m[39m
+            [32m✔ does not match a file with { name: 'work' } [90m(9.1221ms)[39m[39m
+          [32m✔ does not match contains 'work' [90m(31.2768ms)[39m[39m
+        [32m✔ Example: [34m`-work meeting`[0m [90m(52.285ms)[39m[39m
+      [32m✔ Negate first term [90m(52.5748ms)[39m[39m
+      ▶ Negate second term
+        ▶ Example: [34m`work -meeting`[0m
+          ▶ matches contains 'work' AND NOT 'meeting'
+            [32m✔ matches a file with { name: 'deep work' } [90m(9.9863ms)[39m[39m
+            [32m✔ matches a file with { content: 'focused work session' } [90m(9.9878ms)[39m[39m
+          [32m✔ matches contains 'work' AND NOT 'meeting' [90m(20.3985ms)[39m[39m
+          ▶ does not match contains 'meeting'
+            [32m✔ does not match a file with { name: 'work meeting' } [90m(11.7675ms)[39m[39m
+            [32m✔ does not match a file with { content: 'meeting about work' } [90m(9.7364ms)[39m[39m
+            [32m✔ does not match a file with { name: 'meeting' } [90m(8.4726ms)[39m[39m
+          [32m✔ does not match contains 'meeting' [90m(30.5671ms)[39m[39m
+        [32m✔ Example: [34m`work -meeting`[0m [90m(51.1319ms)[39m[39m
+      [32m✔ Negate second term [90m(51.4516ms)[39m[39m
+    [32m✔ Partial Negation [90m(104.2858ms)[39m[39m
+    ▶ Group Negation
+      ▶ Negate entire group
+        ▶ Example: [34m`-(work meeting)`[0m
+          ▶ matches files that do NOT contain BOTH words
+            [32m✔ matches a file with { name: 'play' } [90m(9.8385ms)[39m[39m
+            [32m✔ matches a file with { content: 'personal notes' } [90m(11.324ms)[39m[39m
+            [32m✔ matches a file with { tags: [ 'personal' ] } [90m(12.7191ms)[39m[39m
+            [32m✔ matches a file with { name: 'work' } [90m(11.2086ms)[39m[39m
+            [32m✔ matches a file with { name: 'meeting' } [90m(10.3215ms)[39m[39m
+            [32m✔ matches a file with { content: 'notes from work' } [90m(26.8305ms)[39m[39m
+          [32m✔ matches files that do NOT contain BOTH words [90m(83.2171ms)[39m[39m
+          ▶ does not match files containing BOTH words
+            [32m✔ does not match a file with { name: 'work meeting' } [90m(17.7314ms)[39m[39m
+            [32m✔ does not match a file with { content: 'meeting about work' } [90m(12.1534ms)[39m[39m
+          [32m✔ does not match files containing BOTH words [90m(30.2275ms)[39m[39m
+        [32m✔ Example: [34m`-(work meeting)`[0m [90m(113.5969ms)[39m[39m
+      [32m✔ Negate entire group [90m(113.9063ms)[39m[39m
+    [32m✔ Group Negation [90m(114.075ms)[39m[39m
+  [32m✔ Negation [90m(375.5402ms)[39m[39m
+  ▶ Matches files containing either term
+    ▶ Example: [34m`work OR play`[0m
+      ▶ matches file names containing either term
+        [32m✔ matches a file with { name: 'work' } [90m(14.523ms)[39m[39m
+        [32m✔ matches a file with { name: 'play' } [90m(9.5295ms)[39m[39m
+        [32m✔ matches a file with { name: 'working' } [90m(14.4819ms)[39m[39m
+        [32m✔ matches a file with { name: 'playground' } [90m(8.8455ms)[39m[39m
+      [32m✔ matches file names containing either term [90m(48.155ms)[39m[39m
+      ▶ matches file content containing either term
+        [32m✔ matches a file with { content: 'work' } [90m(14.5834ms)[39m[39m
+        [32m✔ matches a file with { content: 'play' } [90m(14.2046ms)[39m[39m
+        [32m✔ matches a file with { content: 'we met at work' } [90m(10.5948ms)[39m[39m
+        [32m✔ matches a file with { content: 'time to play outside' } [90m(12.3998ms)[39m[39m
+      [32m✔ matches file content containing either term [90m(52.3305ms)[39m[39m
+      ▶ matches file content containing both terms
+        [32m✔ matches a file with { content: 'work then play' } [90m(14.4125ms)[39m[39m
+        [32m✔ matches a file with { content: 'we play after work' } [90m(12.8218ms)[39m[39m
+      [32m✔ matches file content containing both terms [90m(27.611ms)[39m[39m
+      ▶ matches property names containing either term
+        [32m✔ matches a file with { properties: { work: '' } } [90m(19.4073ms)[39m[39m
+        [32m✔ matches a file with { properties: { play: '' } } [90m(16.02ms)[39m[39m
+      [32m✔ matches property names containing either term [90m(35.7013ms)[39m[39m
+      ▶ matches property values containing either term
+        [32m✔ matches a file with { properties: { used_in: 'work' } } [90m(11.2366ms)[39m[39m
+        [32m✔ matches a file with { properties: { used_in: 'play' } } [90m(13.4116ms)[39m[39m
+      [32m✔ matches property values containing either term [90m(24.9557ms)[39m[39m
+      ▶ matches tags containing either term
+        [32m✔ matches a file with { tags: [ 'work' ] } [90m(11.4399ms)[39m[39m
+        [32m✔ matches a file with { tags: [ 'play' ] } [90m(14.0612ms)[39m[39m
+      [32m✔ matches tags containing either term [90m(25.7756ms)[39m[39m
+      ▶ does not match files containing neither term
+        [32m✔ does not match a file with { content: 'rest' } [90m(12.2667ms)[39m[39m
+        [32m✔ does not match a file with { content: 'vacation time' } [90m(10.4845ms)[39m[39m
+        [32m✔ does not match a file with { name: 'meeting notes' } [90m(10.36ms)[39m[39m
+      [32m✔ does not match files containing neither term [90m(33.6133ms)[39m[39m
+    [32m✔ Example: [34m`work OR play`[0m [90m(248.7301ms)[39m[39m
+  [32m✔ Matches files containing either term [90m(249.2566ms)[39m[39m
+  ▶ OR works with quoted phrases
+    ▶ Example: [34m`"work meeting" OR play`[0m
+      ▶ matches files matching the quoted phrase
+        [32m✔ matches a file with { content: 'work meeting' } [90m(12.3942ms)[39m[39m
+        [32m✔ matches a file with { content: 'home work meeting' } [90m(10.8716ms)[39m[39m
+      [32m✔ matches files matching the quoted phrase [90m(23.866ms)[39m[39m
+      ▶ matches files matching the second term
+        [32m✔ matches a file with { content: 'play outside' } [90m(12.8772ms)[39m[39m
+      [32m✔ matches files matching the second term [90m(13.1326ms)[39m[39m
+      ▶ does not match files matching neither
+        [32m✔ does not match a file with { content: 'team meeting' } [90m(16.8864ms)[39m[39m
+        [32m✔ does not match a file with { content: 'homework assignment' } [90m(15.302ms)[39m[39m
+      [32m✔ does not match files matching neither [90m(32.5305ms)[39m[39m
+    [32m✔ Example: [34m`"work meeting" OR play`[0m [90m(69.9306ms)[39m[39m
+  [32m✔ OR works with quoted phrases [90m(70.4979ms)[39m[39m
+  ▶ OR is case-sensitive
+    ▶ Example: [34m`work or play`[0m
+      ▶ matches files with the fully query
+        [32m✔ matches a file with { content: 'work or play' } [90m(11.5127ms)[39m[39m
+      [32m✔ matches files with the fully query [90m(11.6929ms)[39m[39m
+      ▶ does not match files with just one or the other
+        [32m✔ does not match a file with { name: 'work' } [90m(11.4276ms)[39m[39m
+        [32m✔ does not match a file with { name: 'play' } [90m(7.7417ms)[39m[39m
+      [32m✔ does not match files with just one or the other [90m(19.5709ms)[39m[39m
+    [32m✔ Example: [34m`work or play`[0m [90m(31.4194ms)[39m[39m
+  [32m✔ OR is case-sensitive [90m(31.714ms)[39m[39m
+  ▶ OR has lower precedence than implicit AND
+    ▶ Example: [34m`fun work OR play`[0m
+      ▶ matches file content containing 'fun' AND 'work'
+        [32m✔ matches a file with { content: 'fun work' } [90m(14.3754ms)[39m[39m
+        [32m✔ matches a file with { content: 'this is fun work indeed' } [90m(11.7054ms)[39m[39m
+      [32m✔ matches file content containing 'fun' AND 'work' [90m(26.3556ms)[39m[39m
+      ▶ matches file content containing only 'play' (no 'fun' required)
+        [32m✔ matches a file with { content: 'play' } [90m(8.5609ms)[39m[39m
+        [32m✔ matches a file with { content: "let's go play outside" } [90m(11.6771ms)[39m[39m
+      [32m✔ matches file content containing only 'play' (no 'fun' required) [90m(20.5122ms)[39m[39m
+      ▶ does not match file content with 'fun' but neither 'work' nor 'play'
+        [32m✔ does not match a file with { content: 'fun times' } [90m(12.2046ms)[39m[39m
+      [32m✔ does not match file content with 'fun' but neither 'work' nor 'play' [90m(12.4399ms)[39m[39m
+      ▶ does not match file content with 'work' but not 'fun', and not 'play'
+        [32m✔ does not match a file with { content: 'work is hard' } [90m(10.5296ms)[39m[39m
+      [32m✔ does not match file content with 'work' but not 'fun', and not 'play' [90m(10.7219ms)[39m[39m
+    [32m✔ Example: [34m`fun work OR play`[0m [90m(70.3548ms)[39m[39m
+    ▶ Example: [34m`work OR play meeting`[0m
+      ▶ matches file content containing only 'work' (no 'meeting' required)
+        [32m✔ matches a file with { content: 'work' } [90m(10.9182ms)[39m[39m
+        [32m✔ matches a file with { content: 'we met at work' } [90m(10.6897ms)[39m[39m
+      [32m✔ matches file content containing only 'work' (no 'meeting' required) [90m(21.9429ms)[39m[39m
+      ▶ matches file content containing both 'play' AND 'meeting'
+        [32m✔ matches a file with { content: 'play meeting' } [90m(12.4176ms)[39m[39m
+        [32m✔ matches a file with { content: 'our play meeting was fun' } [90m(11.2097ms)[39m[39m
+        [32m✔ matches a file with { content: 'meeting about play' } [90m(11.7775ms)[39m[39m
+      [32m✔ matches file content containing both 'play' AND 'meeting' [90m(36.0927ms)[39m[39m
+      ▶ does not match file content with 'play' but not 'meeting'
+        [32m✔ does not match a file with { content: 'play' } [90m(13.6709ms)[39m[39m
+        [32m✔ does not match a file with { content: "let's go play outside" } [90m(8.9711ms)[39m[39m
+      [32m✔ does not match file content with 'play' but not 'meeting' [90m(22.9792ms)[39m[39m
+      ▶ does not match file content with 'meeting' but not 'play' or 'work'
+        [32m✔ does not match a file with { content: 'meeting notes' } [90m(14.1424ms)[39m[39m
+      [32m✔ does not match file content with 'meeting' but not 'play' or 'work' [90m(14.3131ms)[39m[39m
+    [32m✔ Example: [34m`work OR play meeting`[0m [90m(95.6915ms)[39m[39m
+  [32m✔ OR has lower precedence than implicit AND [90m(166.7346ms)[39m[39m
+  ▶ Edge case: duplicate matches should still return once
+    ▶ Example: [34m`work OR work`[0m
+      ▶ matches files containing the term
+        [32m✔ matches a file with { content: 'work' } [90m(13.2845ms)[39m[39m
+        [32m✔ matches a file with { name: 'work log' } [90m(10.5872ms)[39m[39m
+      [32m✔ matches files containing the term [90m(24.3087ms)[39m[39m
+      ▶ does not match files without the term
+        [32m✔ does not match a file with { content: 'play' } [90m(9.5171ms)[39m[39m
+      [32m✔ does not match files without the term [90m(9.7354ms)[39m[39m
+    [32m✔ Example: [34m`work OR work`[0m [90m(34.3363ms)[39m[39m
+  [32m✔ Edge case: duplicate matches should still return once [90m(34.6285ms)[39m[39m
+  ▶ Edge case: missing right-hand term
+    ▶ Example: [34m`work OR`[0m
+      ▶ matches files containing the first term
+        [32m✔ matches a file with { content: 'work' } [90m(13.8141ms)[39m[39m
+        [32m✔ matches a file with { name: 'work log' } [90m(11.3056ms)[39m[39m
+      [32m✔ matches files containing the first term [90m(25.3869ms)[39m[39m
+      ▶ does not match files without the term
+        [32m✔ does not match a file with { content: 'play' } [90m(18.6754ms)[39m[39m
+      [32m✔ does not match files without the term [90m(18.8198ms)[39m[39m
+    [32m✔ Example: [34m`work OR`[0m [90m(44.3573ms)[39m[39m
+  [32m✔ Edge case: missing right-hand term [90m(44.6686ms)[39m[39m
+  ▶ Operators
+    ▶ file
+      ▶ Search for a single word
+        ▶ Example: [34m`file:work`[0m
+          ▶ matches files with names containing the word
+            [32m✔ matches a file with { name: 'work' } [90m(11.667ms)[39m[39m
+            [32m✔ matches a file with { name: 'works' } [90m(8.0065ms)[39m[39m
+            [32m✔ matches a file with { name: 'work meeting' } [90m(7.9306ms)[39m[39m
+            [32m✔ matches a file with { name: 'homework' } [90m(9.911ms)[39m[39m
+          [32m✔ matches files with names containing the word [90m(38.3314ms)[39m[39m
+          ▶ does not match file content, properties, or tags
+            [32m✔ does not match a file with { content: 'work' } [90m(9.7799ms)[39m[39m
+            [32m✔ does not match a file with { properties: { work: '' } } [90m(11.5862ms)[39m[39m
+            [32m✔ does not match a file with { properties: { used_in: 'work' } } [90m(9.957ms)[39m[39m
+            [32m✔ does not match a file with { tags: [ 'work' ] } [90m(11.2161ms)[39m[39m
+          [32m✔ does not match file content, properties, or tags [90m(43.1131ms)[39m[39m
+          ▶ does not match folder names
+            [32m✔ does not match a file with { path: 'work/meeting.md' } [90m(10.7116ms)[39m[39m
+          [32m✔ does not match folder names [90m(10.8986ms)[39m[39m
+        [32m✔ Example: [34m`file:work`[0m [90m(92.6261ms)[39m[39m
+      [32m✔ Search for a single word [90m(93.2052ms)[39m[39m
+      ▶ Search for a phrase
+        ▶ Example: [34m`file:"work meeting"`[0m
+          ▶ matches files with names containing the phrase
+            [32m✔ matches a file with { name: 'work meeting' } [90m(10.1221ms)[39m[39m
+            [32m✔ matches a file with { name: 'work meetings' } [90m(8.9432ms)[39m[39m
+            [32m✔ matches a file with { name: 'homework meetings' } [90m(6.3618ms)[39m[39m
+          [32m✔ matches files with names containing the phrase [90m(25.8224ms)[39m[39m
+          ▶ does not match files with the phrase only in content or metadata
+            [32m✔ does not match a file with { content: 'work meeting' } [90m(10.0831ms)[39m[39m
+            [32m✔ does not match a file with { properties: { 'work meeting': '' } } [90m(9.6436ms)[39m[39m
+            [32m✔ does not match a file with { properties: { used_in: 'work meeting' } } [90m(12.03ms)[39m[39m
+            [32m✔ does not match a file with { tags: [ 'work_meeting' ] } [90m(12.8385ms)[39m[39m
+          [32m✔ does not match files with the phrase only in content or metadata [90m(45.0949ms)[39m[39m
+          ▶ does not match files with reordered or partial phrases
+            [32m✔ does not match a file with { name: 'meeting work' } [90m(11.3178ms)[39m[39m
+            [32m✔ does not match a file with { name: 'work  meeting' } [90m(9.0946ms)[39m[39m
+          [32m✔ does not match files with reordered or partial phrases [90m(20.7085ms)[39m[39m
+        [32m✔ Example: [34m`file:"work meeting"`[0m [90m(91.8548ms)[39m[39m
+      [32m✔ Search for a phrase [90m(92.6222ms)[39m[39m
+      ▶ Search for a regex
+        ▶ Example: [34m`file:/[0-9]+/`[0m
+          ▶ matches files with numbers in the name
+            [32m✔ matches a file with { name: 'meeting1' } [90m(12.038ms)[39m[39m
+            [32m✔ matches a file with { name: 'notes-2024' } [90m(8.5422ms)[39m[39m
+            [32m✔ matches a file with { name: 'Q4-summary' } [90m(18.1072ms)[39m[39m
+          [32m✔ matches files with numbers in the name [90m(39.4744ms)[39m[39m
+          ▶ does not match files without numbers in the name
+            [32m✔ does not match a file with { name: 'work meeting' } [90m(9.5618ms)[39m[39m
+            [32m✔ does not match a file with { content: '2024 planning', name: 'fafdbc' } [90m(12.2643ms)[39m[39m
+            [32m✔ does not match a file with { properties: { year: 2024 }, name: 'eaafba' } [90m(15.5573ms)[39m[39m
+          [32m✔ does not match files without numbers in the name [90m(37.8659ms)[39m[39m
+        [32m✔ Example: [34m`file:/[0-9]+/`[0m [90m(77.6352ms)[39m[39m
+      [32m✔ Search for a regex [90m(78.3007ms)[39m[39m
+      ▶ Search for a negated word
+        ▶ Example: [34m`file:-work`[0m
+          ▶ matches files whose names do not contain the word
+            [32m✔ matches a file with { name: 'meeting' } [90m(8.9615ms)[39m[39m
+            [32m✔ matches a file with { name: 'notes' } [90m(16.9239ms)[39m[39m
+          [32m✔ matches files whose names do not contain the word [90m(26.2841ms)[39m[39m
+          ▶ does not match files whose names contain the word
+            [32m✔ does not match a file with { name: 'work' } [90m(11.3888ms)[39m[39m
+            [32m✔ does not match a file with { name: 'work meeting' } [90m(11.6084ms)[39m[39m
+            [32m✔ does not match a file with { name: 'homework' } [90m(18.1348ms)[39m[39m
+          [32m✔ does not match files whose names contain the word [90m(41.5815ms)[39m[39m
+        [32m✔ Example: [34m`file:-work`[0m [90m(68.0942ms)[39m[39m
+      [32m✔ Search for a negated word [90m(68.4802ms)[39m[39m
+      ▶ Negate the search for a word
+        ▶ Example: [34m`-file:work`[0m
+          ▶ matches files whose names do not contain the word
+            [32m✔ matches a file with { name: 'meeting' } [90m(8.1572ms)[39m[39m
+            [32m✔ matches a file with { name: 'notes' } [90m(14.8955ms)[39m[39m
+          [32m✔ matches files whose names do not contain the word [90m(23.4803ms)[39m[39m
+          ▶ does not match files whose names contain the word
+            [32m✔ does not match a file with { name: 'work' } [90m(9.612ms)[39m[39m
+            [32m✔ does not match a file with { name: 'work meeting' } [90m(9.7404ms)[39m[39m
+            [32m✔ does not match a file with { name: 'homework' } [90m(8.8713ms)[39m[39m
+          [32m✔ does not match files whose names contain the word [90m(28.7334ms)[39m[39m
+        [32m✔ Example: [34m`-file:work`[0m [90m(52.4769ms)[39m[39m
+      [32m✔ Negate the search for a word [90m(52.8323ms)[39m[39m
+      ▶ Search for a group
+        ▶ Example: [34m`file:(work meeting)`[0m
+          ▶ matches files with both words contained
+            [32m✔ matches a file with { name: 'work meeting' } [90m(13.7072ms)[39m[39m
+            [32m✔ matches a file with { name: 'work meeting' } [90m(10.3713ms)[39m[39m
+            [32m✔ matches a file with { name: 'jan 16 work meeting' } [90m(7.8416ms)[39m[39m
+            [32m✔ matches a file with { name: 'work meeting with Gary' } [90m(8.7706ms)[39m[39m
+          [32m✔ matches files with both words contained [90m(41.2877ms)[39m[39m
+          ▶ does not match files with only one word in the name
+            [32m✔ does not match a file with { name: 'meeting' } [90m(12.4421ms)[39m[39m
+            [32m✔ does not match a file with { name: 'work notes' } [90m(10.4498ms)[39m[39m
+            [32m✔ does not match a file with { name: 'team meeting' } [90m(6.3537ms)[39m[39m
+          [32m✔ does not match files with only one word in the name [90m(29.8621ms)[39m[39m
+          ▶ does not match files without the grouped words
+            [32m✔ does not match a file with { name: 'notes' } [90m(10.5046ms)[39m[39m
+            [32m✔ does not match a file with { name: 'planning' } [90m(7.3517ms)[39m[39m
+          [32m✔ does not match files without the grouped words [90m(18.1735ms)[39m[39m
+          ▶ does not match content
+            [32m✔ does not match a file with { name: 'work', content: 'meeting' } [90m(14.8131ms)[39m[39m
+            [32m✔ does not match a file with { content: 'work meeting notes' } [90m(10.6313ms)[39m[39m
+          [32m✔ does not match content [90m(25.7487ms)[39m[39m
+        [32m✔ Example: [34m`file:(work meeting)`[0m [90m(115.3993ms)[39m[39m
+      [32m✔ Search for a group [90m(115.7737ms)[39m[39m
+    [32m✔ file [90m(501.9585ms)[39m[39m
+    ▶ path
+      ▶ Search for a Single Word
+        [32m✔ [0mExample: [34m`path:work`[0m [90m(0.2591ms)[39m[39m
+        [32m✔ [0mMatches files where the word appears anywhere in the path [90m(0.0435ms)[39m[39m
+        ▶ Includes:
+          [32m✔ work.md (file name) [90m(10.4408ms)[39m[39m
+          [32m✔ notes/work.md (file name in path) [90m(17.9817ms)[39m[39m
+          [32m✔ work/notes.md (parent folder) [90m(20.7385ms)[39m[39m
+          [32m✔ homework/notes.md (substring match) [90m(29.3152ms)[39m[39m
+          [32m✔ my-work/notes.md (substring with punctuation) [90m(22.6571ms)[39m[39m
+        [32m✔ Includes: [90m(102.1634ms)[39m[39m
+        ▶ Does not include:
+          [32m✔ content containing "work" [90m(35.5676ms)[39m[39m
+          [32m✔ properties containing "work" [90m(27.2168ms)[39m[39m
+          [32m✔ tags containing "work" [90m(23.565ms)[39m[39m
+        [32m✔ Does not include: [90m(86.9635ms)[39m[39m
+      [32m✔ Search for a Single Word [90m(189.7825ms)[39m[39m
+      ▶ Case Sensitivity
+        ▶ Keyword is case-insensitive
+          [32m✔ [0mExample: [34m`PATH:work`[0m [90m(0.1149ms)[39m[39m
+          [32m✔ `PATH:` works the same as `path:` [90m(24.3556ms)[39m[39m
+        [32m✔ Keyword is case-insensitive [90m(24.7307ms)[39m[39m
+        ▶ Matching is case-insensitive
+          [32m✔ [0mExample: [34m`path:WORK`[0m [90m(0.0821ms)[39m[39m
+          ▶ Matches:
+            [32m✔ work/meeting.md (lowercase) [90m(16.8762ms)[39m[39m
+            [32m✔ WORK/meeting.md (uppercase) [90m(15.1595ms)[39m[39m
+            [32m✔ WoRk/meeting.md (mixed case) [90m(15.2558ms)[39m[39m
+          [32m✔ Matches: [90m(47.7323ms)[39m[39m
+        [32m✔ Matching is case-insensitive [90m(48.0098ms)[39m[39m
+      [32m✔ Case Sensitivity [90m(73.0375ms)[39m[39m
+      ▶ Quoted Phrases
+        ▶ Exact phrase matching
+          [32m✔ [0mExample: [34m`path:"work meeting"`[0m [90m(0.099ms)[39m[39m
+          [32m✔ [0mMatches the exact phrase as a substring of the full path [90m(0.0391ms)[39m[39m
+          ▶ Includes:
+            [32m✔ work meeting.md (file name) [90m(11.5096ms)[39m[39m
+            [32m✔ notes/work meeting.md (within path) [90m(10.4374ms)[39m[39m
+          [32m✔ Includes: [90m(22.301ms)[39m[39m
+          ▶ Does not include:
+            [32m✔ work/meeting.md (words separated by '/') [90m(15.4684ms)[39m[39m
+          [32m✔ Does not include: [90m(15.6893ms)[39m[39m
+        [32m✔ Exact phrase matching [90m(38.408ms)[39m[39m
+        ▶ Slashes are treated literally
+          [32m✔ [0mExample: [34m`path:"work/"`[0m [90m(0.0981ms)[39m[39m
+          [32m✔ [0mMatches any path containing the exact substring `work/` [90m(0.0604ms)[39m[39m
+          ▶ Includes:
+            [32m✔ work/notes.md  [90m(15.5766ms)[39m[39m
+            [32m✔ work/projects/todo.md  [90m(20.8698ms)[39m[39m
+            [32m✔ homework/notes.md (substring match) [90m(14.5791ms)[39m[39m
+          [32m✔ Includes: [90m(51.5023ms)[39m[39m
+          ▶ Does not include:
+            [32m✔ notes/work.md (missing trailing slash) [90m(15.3801ms)[39m[39m
+          [32m✔ Does not include: [90m(15.6857ms)[39m[39m
+        [32m✔ Slashes are treated literally [90m(67.6908ms)[39m[39m
+        ▶ Special characters
+          [32m✔ [0mExample: [34m`path:"work (old)"`[0m [90m(0.0825ms)[39m[39m
+          ▶ Matches phrases with special characters literally:
+            [32m✔ work (old).md  [90m(11.6253ms)[39m[39m
+          [32m✔ Matches phrases with special characters literally: [90m(11.8228ms)[39m[39m
+        [32m✔ Special characters [90m(12.1029ms)[39m[39m
+        ▶ Case-insensitive matching
+          [32m✔ [0mExample: [34m`path:"Work"`[0m [90m(0.0765ms)[39m[39m
+          ▶ Matches regardless of casing:
+            [32m✔ WORK/notes.md  [90m(13.0777ms)[39m[39m
+            [32m✔ work/notes.md  [90m(14.3966ms)[39m[39m
+          [32m✔ Matches regardless of casing: [90m(27.8301ms)[39m[39m
+        [32m✔ Case-insensitive matching [90m(28.1351ms)[39m[39m
+      [32m✔ Quoted Phrases [90m(146.7675ms)[39m[39m
+      ▶ Negation
+        [32m✔ [0mExample: [34m`-path:work`[0m [90m(0.1571ms)[39m[39m
+        [32m✔ [0mExample: [34m`path:-work`[0m [90m(0.0634ms)[39m[39m
+        [32m✔ [0mExcludes files whose path contains the term. [90m(0.068ms)[39m[39m
+        ▶ Includes:
+          [32m✔ fun/play.md  [90m(22.1324ms)[39m[39m
+        [32m✔ Includes: [90m(22.5979ms)[39m[39m
+        ▶ Does not include:
+          [32m✔ work/meeting.md  [90m(20.763ms)[39m[39m
+          [32m✔ notes/work.md  [90m(18.3869ms)[39m[39m
+        [32m✔ Does not include: [90m(39.6969ms)[39m[39m
+      [32m✔ Negation [90m(63.1548ms)[39m[39m
+      ▶ Grouping
+        [32m✔ [0mExample: [34m`path:(work meeting)`[0m [90m(0.1475ms)[39m[39m
+        [32m✔ [0mAll terms inside the group must match the path [90m(0.0473ms)[39m[39m
+        ▶ Includes:
+          [32m✔ work/meeting.md  [90m(17.3647ms)[39m[39m
+          [32m✔ notes/work meeting.md  [90m(16.4453ms)[39m[39m
+        [32m✔ Includes: [90m(34.3831ms)[39m[39m
+        ▶ Does not include:
+          [32m✔ work/notes.md (missing "meeting") [90m(14.2439ms)[39m[39m
+          [32m✔ meeting/notes.md (missing "work") [90m(28.1824ms)[39m[39m
+        [32m✔ Does not include: [90m(43.2958ms)[39m[39m
+      [32m✔ Grouping [90m(78.3885ms)[39m[39m
+      ▶ Regular Expressions
+        [32m✔ [0mMatches using a regular expression against the full path [90m(0.1032ms)[39m[39m
+        ▶ Example: [34m`path:/^work/`[0m
+          ▶ Includes:
+            [32m✔ work/notes.md (matches prefix) [90m(19.5108ms)[39m[39m
+          [32m✔ Includes: [90m(19.7374ms)[39m[39m
+          ▶ Does not include:
+            [32m✔ notes/work/notes.md (not at start) [90m(24.8846ms)[39m[39m
+          [32m✔ Does not include: [90m(25.2453ms)[39m[39m
+        [32m✔ Example: [34m`path:/^work/`[0m [90m(45.2827ms)[39m[39m
+        ▶ Example: [34m`path:/[0-9]+/`[0m
+          ▶ Includes:
+            [32m✔ 2024/notes.md  [90m(19.1062ms)[39m[39m
+            [32m✔ notes-1.md  [90m(24.2685ms)[39m[39m
+          [32m✔ Includes: [90m(43.8072ms)[39m[39m
+          ▶ Does not include:
+            [32m✔ work/notes.md  [90m(10.3772ms)[39m[39m
+          [32m✔ Does not include: [90m(10.7757ms)[39m[39m
+        [32m✔ Example: [34m`path:/[0-9]+/`[0m [90m(54.9667ms)[39m[39m
+      [32m✔ Regular Expressions [90m(100.6565ms)[39m[39m
+      ▶ Empty Search
+        [32m✔ [0mExample: [34m`path:`[0m [90m(0.0778ms)[39m[39m
+        [32m✔ Matches nothing [90m(14.8101ms)[39m[39m
+      [32m✔ Empty Search [90m(15.1304ms)[39m[39m
+      ▶ Combining Searches
+        ▶ Multiple path filters
+          [32m✔ [0mExample: [34m`path:work path:meeting`[0m [90m(0.1264ms)[39m[39m
+          [32m✔ [0mBoth filters must match the path [90m(0.0512ms)[39m[39m
+          ▶ Includes:
+            [32m✔ work/meeting.md  [90m(14.3559ms)[39m[39m
+            [32m✔ notes/work meeting.md  [90m(14.8506ms)[39m[39m
+          [32m✔ Includes: [90m(29.5435ms)[39m[39m
+          ▶ Does not include:
+            [32m✔ work/notes.md  [90m(14.4962ms)[39m[39m
+            [32m✔ meeting/notes.md  [90m(13.0338ms)[39m[39m
+          [32m✔ Does not include: [90m(28.1125ms)[39m[39m
+        [32m✔ Multiple path filters [90m(58.2553ms)[39m[39m
+        ▶ Mixing with general search
+          [32m✔ [0mExample: [34m`path:work meeting`[0m [90m(0.1628ms)[39m[39m
+          [32m✔ [0mCombines path filtering with general search. [90m(0.0727ms)[39m[39m
+          ▶ Includes:
+            [32m✔ work/notes.md with content containing "meeting"  [90m(16.1178ms)[39m[39m
+          [32m✔ Includes: [90m(16.5876ms)[39m[39m
+          ▶ Does not include:
+            [32m✔ work/notes.md without "meeting" in content  [90m(13.5931ms)[39m[39m
+          [32m✔ Does not include: [90m(14.0666ms)[39m[39m
+        [32m✔ Mixing with general search [90m(31.4916ms)[39m[39m
+      [32m✔ Combining Searches [90m(90.0791ms)[39m[39m
+    [32m✔ path [90m(757.9994ms)[39m[39m
+    ▶ tag
+      ▶ Search for a Single Word
+        [32m✔ [0mExample: [34m`tag:work`[0m or [34m`tag:#work`[0m [90m(0.2496ms)[39m[39m
+        [32m✔ [0mMatches files where the word appears as a tag [90m(0.0565ms)[39m[39m
+        ▶ Includes:
+          [32m✔ work  [90m(12.627ms)[39m[39m
+          [32m✔ work/stuff  [90m(11.8897ms)[39m[39m
+        [32m✔ Includes: [90m(24.9539ms)[39m[39m
+        ▶ Does not include:
+          [32m✔ content containing "work" [90m(25.7124ms)[39m[39m
+          [32m✔ properties containing "work" [90m(31.7481ms)[39m[39m
+          ▶ nested tags
+            [32m✔ notes/work  [90m(14.8149ms)[39m[39m
+          [32m✔ nested tags [90m(15.1585ms)[39m[39m
+        [32m✔ Does not include: [90m(73.221ms)[39m[39m
+      [32m✔ Search for a Single Word [90m(98.8712ms)[39m[39m
+      ▶ Case Sensitivity
+        ▶ Keyword is case-insensitive
+          [32m✔ [0mExample: [34m`TAG:work`[0m [90m(0.1199ms)[39m[39m
+          [32m✔ `TAG:` works the same as `tag:` [90m(11.815ms)[39m[39m
+        [32m✔ Keyword is case-insensitive [90m(12.1725ms)[39m[39m
+        ▶ Matching is case-insensitive
+          [32m✔ [0mExample: [34m`tag:WORK`[0m [90m(0.0877ms)[39m[39m
+          ▶ Matches:
+            [32m✔ work (lowercase) [90m(13.1981ms)[39m[39m
+            [32m✔ WORK (uppercase) [90m(15.1594ms)[39m[39m
+            [32m✔ Work (mixed case) [90m(17.9379ms)[39m[39m
+          [32m✔ Matches: [90m(46.7076ms)[39m[39m
+        [32m✔ Matching is case-insensitive [90m(46.9957ms)[39m[39m
+      [32m✔ Case Sensitivity [90m(59.408ms)[39m[39m
+      ▶ Negation
+        [32m✔ [0mExample: [34m`-tag:work`[0m [90m(0.1058ms)[39m[39m
+        [32m✔ [0mExcludes files whose tags contain the term. [90m(0.0393ms)[39m[39m
+        ▶ Includes:
+          [32m✔ fun/play  [90m(14.7741ms)[39m[39m
+          [32m✔  (empty tag) [90m(26.4301ms)[39m[39m
+          [32m✔ notes/work (nested tag does not normally match) [90m(11.0168ms)[39m[39m
+        [32m✔ Includes: [90m(52.76ms)[39m[39m
+        ▶ Does not include:
+          [32m✔ work  [90m(11.3999ms)[39m[39m
+          [32m✔ work/meeting  [90m(12.2756ms)[39m[39m
+        [32m✔ Does not include: [90m(24.3415ms)[39m[39m
+      [32m✔ Negation [90m(77.7509ms)[39m[39m
+      ▶ Can only be followed by text
+        ▶ Illegal searches
+          ▶ Quoted Phrase
+            [32m✔ [0mExample: [34m`tag:"work"`[0m [90m(0.4409ms)[39m[39m
+          [32m✔ Quoted Phrase [90m(11.2074ms)[39m[39m
+          ▶ Regular Expressions
+            [32m✔ [0mExample: [34m`tag:/work/`[0m [90m(0.4817ms)[39m[39m
+          [32m✔ Regular Expressions [90m(12.1391ms)[39m[39m
+          ▶ Negated Subquery
+            [32m✔ [0mExample: [34m`tag:-word`[0m [90m(0.1537ms)[39m[39m
+          [32m✔ Negated Subquery [90m(31.848ms)[39m[39m
+          ▶ Grouping
+            [32m✔ [0mExample: [34m`tag:(work meeting)`[0m [90m(0.2648ms)[39m[39m
+          [32m✔ Grouping [90m(13.9346ms)[39m[39m
+        [32m✔ Illegal searches [90m(69.6439ms)[39m[39m
+      [32m✔ Can only be followed by text [90m(69.8562ms)[39m[39m
+      ▶ Empty Search
+        [32m✔ [0mExample: [34m`tag:`[0m [90m(0.1662ms)[39m[39m
+        [32m✔ Matches nothing [90m(19.1543ms)[39m[39m
+      [32m✔ Empty Search [90m(19.6603ms)[39m[39m
+      ▶ Combining Searches
+        ▶ Multiple tag filters
+          [32m✔ [0mExample: [34m`tag:work tag:meeting`[0m [90m(0.1229ms)[39m[39m
+          [32m✔ [0mThe file must contain both tags [90m(0.0394ms)[39m[39m
+          ▶ Includes:
+            [32m✔ work, meeting  [90m(14.4864ms)[39m[39m
+          [32m✔ Includes: [90m(14.6996ms)[39m[39m
+          ▶ Does not include:
+            [32m✔ work  [90m(13.4626ms)[39m[39m
+            [32m✔ meeting  [90m(10.021ms)[39m[39m
+          [32m✔ Does not include: [90m(23.9383ms)[39m[39m
+        [32m✔ Multiple tag filters [90m(39.0746ms)[39m[39m
+        ▶ Mixing with general search
+          [32m✔ [0mExample: [34m`tag:work meeting`[0m [90m(0.1186ms)[39m[39m
+          [32m✔ [0mCombines tag filtering with general search. [90m(0.0403ms)[39m[39m
+          ▶ Includes:
+            [32m✔ tags(work) with content containing "meeting"  [90m(14.2707ms)[39m[39m
+          [32m✔ Includes: [90m(14.514ms)[39m[39m
+          ▶ Does not include:
+            [32m✔ tags(work) without "meeting" in content [90m(9.9787ms)[39m[39m
+            [32m✔ tags() with "meeting" in content, but no matching tag [90m(14.7695ms)[39m[39m
+          [32m✔ Does not include: [90m(25.1476ms)[39m[39m
+        [32m✔ Mixing with general search [90m(40.1953ms)[39m[39m
+      [32m✔ Combining Searches [90m(79.5115ms)[39m[39m
+    [32m✔ tag [90m(405.7862ms)[39m[39m
+  [32m✔ Operators [90m(1666.0202ms)[39m[39m
+[32m✔ Search contract [90m(4526.5746ms)[39m[39m
+[34mℹ tests 543[39m
+[34mℹ suites 0[39m
+[34mℹ pass 542[39m
+[34mℹ fail 0[39m
+[34mℹ cancelled 0[39m
+[34mℹ skipped 1[39m
+[34mℹ todo 0[39m
+[34mℹ duration_ms 4725.3407[39m
+
+EXIT_CODE::0

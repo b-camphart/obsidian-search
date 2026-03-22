@@ -1,0 +1,25 @@
+[32mPASS[39m test/contract/tests/and.ts
+[32mPASS[39m test/contract/tests/colon.ts
+[32mPASS[39m test/contract/tests/file.ts
+[32mPASS[39m test/contract/tests/negation.ts
+[32mPASS[39m test/contract/tests/or.ts
+[32mPASS[39m test/contract/tests/path.ts
+TEST test/contract/tests/property.ts
+    TEST [property:value]
+        TEST keyword in property value
+            [33mSKIP[39m [prop:file:value]
+            [33mSKIP[39m [prop:path:value]
+            [33mSKIP[39m [prop:content:value]
+            [33mSKIP[39m [prop:tag:value]
+            [33mSKIP[39m [prop:ignore-case:value]
+            [33mSKIP[39m [prop:match-case:value]
+            [33mSKIP[39m [prop:block:value]
+            [33mSKIP[39m [prop:line:value]
+            [33mSKIP[39m [prop:section:value]
+            [33mSKIP[39m [prop:task:value]
+            [33mSKIP[39m [prop:task-todo:value]
+            [33mSKIP[39m [prop:task-done:value]
+[32mPASS[39m test/contract/tests/property.ts
+[32mPASS[39m test/contract/tests/tags.ts
+[32mPASS[39m test/contract/tests/words.ts
+<<PASSED>>

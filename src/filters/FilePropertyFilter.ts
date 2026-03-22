@@ -1,67 +1,121 @@
-import {
-    CachedMetadata,
-    MetadataCache,
-    TFile,
-} from "obsidian";
-import { FileFilter } from "src/filters/FileFilter";
-import { StringChecker } from "../checkers/StringChecker";
-import { matchAll } from "./MatchAllFilter";
-import { or } from "./OrFilter";
+import type * as obsidian from "obsidian";
+import { Filter } from "./Filter";
+import type { StringFilter } from "./strings";
+import type { FileFilter } from "./FileFilter";
 
-export interface Metadata extends Pick<MetadataCache, "getFileCache"> {
-    getFileCache(file: TFile): null | Pick<CachedMetadata, "frontmatter">;
+export class PropertyNameFilter extends Filter<obsidian.FrontMatterCache> {
+	matcher;
+
+	constructor(def: { matcher: StringFilter }) {
+		super();
+		this.matcher = def.matcher;
+	}
+
+	static appliesTo(match: StringFilter, frontmatter: obsidian.FrontMatterCache): boolean {
+		for (const key of Object.keys(frontmatter)) {
+			if (match.appliesTo(key)) return true;
+		}
+		return false;
+	}
+	override appliesTo(this: PropertyNameFilter, frontmatter: obsidian.FrontMatterCache): boolean {
+		return PropertyNameFilter.appliesTo(this.matcher, frontmatter);
+	}
+
+	override toQuery(this: PropertyNameFilter): string {
+		return `[${this.matcher.toQuery()}]`;
+	}
 }
 
-export class MetatdataPropertyFilter {
+export type FrontmatterFilter = Filter<obsidian.FrontMatterCache>;
 
-    constructor(
-        private property: StringChecker,
-        private value?: StringChecker,
-    ) {}
-
-    appliesTo(metadata: Pick<CachedMetadata, 'frontmatter'> | null): boolean {
-        const properties = metadata?.frontmatter
-        if (properties == null) return false;
-        const keys = Object.keys(properties).filter((key) =>
-            this.property.matches(key),
-        );
-        if (keys.length === 0) return false;
-
-        if (this.value == null) return true;
-        
-        return keys.some((key) => {
-            const value: string | undefined = properties[key]?.toString();
-            if (value == null) return false;
-
-            return this.value!.matches(value);
-        });
-    }
-
+export function propertyName(matcher: StringFilter): FrontmatterFilter {
+	return new PropertyNameFilter({ matcher });
 }
 
-export class FilePropertyFilter implements FileFilter {
+export function property(
+	prop_matcher: FrontmatterFilter,
+	metadataCache: Pick<obsidian.MetadataCache, "getFileCache">,
+): FileFilter {
+	return new PropertyFilter({
+		property: prop_matcher,
+		value: null,
+		metadataCache,
+	});
+}
 
-    private readonly metadataFilter: MetatdataPropertyFilter;
+export function propertyValue(
+	prop_matcher: FrontmatterFilter,
+	value_matcher: StringFilter,
+	metadataCache: Pick<obsidian.MetadataCache, "getFileCache">,
+): FileFilter {
+	return new PropertyFilter({
+		property: prop_matcher,
+		value: value_matcher,
+		metadataCache,
+	});
+}
 
-    constructor(
-        private readonly metadata: Metadata,
+export class PropertyValueFilter {
+	match;
+	metadataCache;
 
-        property: StringChecker,
-        value?: StringChecker,
-    ) {
-        this.metadataFilter = new MetatdataPropertyFilter(property, value)
-    }
+	constructor(def: {
+		match: StringFilter;
+		metadataCache: Pick<obsidian.MetadataCache, "getFileCache">;
+	}) {
+		this.match = def.match;
+		this.metadataCache = def.metadataCache;
+	}
 
-    async appliesTo(file: TFile): Promise<boolean> {
-        const cache = this.metadata.getFileCache(file)
-        return this.metadataFilter.appliesTo(cache)
-    }
+	static appliesTo(match: StringFilter, frontmatter: obsidian.FrontMatterCache) {
+		for (const value of Object.values(frontmatter)) {
+			if (typeof value === "string" && match.appliesTo(value)) {
+				return true;
+			}
+		}
 
-    and<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<TFile & R> {
-        return matchAll(this, filter as FileFilter)
-    }
+		return false;
+	}
+	appliesTo(this: PropertyValueFilter, file: obsidian.TFile) {
+		return PropertyValueFilter.appliesTo(
+			this.match,
+			this.metadataCache.getFileCache(file)?.frontmatter ?? {},
+		);
+	}
+}
 
-    or<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<TFile & R> {
-        return or(this, filter as FileFilter)
-    }
+export class PropertyFilter extends Filter<obsidian.TFile> {
+	name;
+	value;
+	matadataCache;
+
+	constructor(def: {
+		property: FrontmatterFilter;
+		value: StringFilter | null;
+		metadataCache: Pick<obsidian.MetadataCache, "getFileCache">;
+	}) {
+		super();
+		this.name = def.property;
+		this.value = def.value;
+		this.matadataCache = def.metadataCache;
+	}
+
+	override appliesTo(this: PropertyFilter, file: obsidian.TFile): boolean {
+		const metadata = this.matadataCache.getFileCache(file) ?? {};
+		return this.appliesToFrontmatter(metadata.frontmatter);
+	}
+
+	override toQuery(this: PropertyFilter): string {
+		let suffix = "";
+		if (this.value !== null) {
+			suffix = ":" + this.value.toQuery();
+		}
+		return `[${this.name.toQuery()}${suffix}]`;
+	}
+
+	appliesToFrontmatter(this: PropertyFilter, frontmatter: obsidian.FrontMatterCache | undefined) {
+		if (!frontmatter) return false;
+
+		return this.name.appliesTo(frontmatter);
+	}
 }

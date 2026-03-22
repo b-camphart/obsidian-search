@@ -1,29 +1,28 @@
-import { TFile } from "obsidian";
-import { StringChecker } from "src/checkers/StringChecker";
-import { FileFilter } from "src/filters/FileFilter";
-import { matchAll } from "./MatchAllFilter";
-import { or } from "./OrFilter";
+import type { TFile } from "obsidian";
+import type { AsyncFileFilter } from "./FileFilter";
+import { AsyncFilter } from "./Filter";
+import { StringFilter } from "./strings";
 
-export function content(checker: StringChecker): FileFilter {
-    return new FileContentFilter(checker)
+export function content(matcher: StringFilter): AsyncFileFilter {
+	return new ContentFilter({ matcher });
 }
 
-export class FileContentFilter implements FileFilter {
+export class ContentFilter extends AsyncFilter<TFile> {
+	content;
 
-    constructor(private readonly checker: StringChecker) {}
+	constructor(def: { matcher: StringFilter }) {
+		super();
+		this.content = def.matcher;
+	}
 
-    async appliesTo(file: TFile): Promise<boolean> {
-        const content = await file.vault.cachedRead(file)
-        return this.checker.matches(content)
-    }
+	static async appliesTo(match: StringFilter, file: TFile): Promise<boolean> {
+		return match.appliesTo(await file.vault.cachedRead(file));
+	}
+	override async appliesTo(this: ContentFilter, file: TFile): Promise<boolean> {
+		return ContentFilter.appliesTo(this.content, file);
+	}
 
-    and<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<TFile & R> {
-        return matchAll<TFile>(this, filter as FileFilter)
-    }
-
-    or<R extends Partial<TFile>>(filter: FileFilter<R>): FileFilter<TFile & R> {
-        return or<TFile>(this, filter as FileFilter)
-    }
-
-
+	override toQuery(this: ContentFilter): string {
+		return `content:${this.content.toQuery()}`;
+	}
 }

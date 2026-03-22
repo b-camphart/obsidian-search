@@ -1,41 +1,54 @@
 {
-  "name": "obsidian-search",
-  "version": "0.1.2",
-  "description": "",
-  "main": "dist/main.cjs",
-  "module": "dist/main.mjs",
-  "typings": "dist/main.d.ts",
-  "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/main.mjs",
-      "require": "./dist/main.cjs"
-    },
-    "./package.json": "./package.json"
-  },
-  "scripts": {
-    "build": "vite build",
-    "test:unit": "vitest --config test/vitest.config.js",
-    "test:integration": "vite build --config integration/vite.config.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "github.com/b-camphart/obsidian-search"
-  },
-  "keywords": [
-    "obsidian",
-    "search"
-  ],
-  "author": "b-camphart",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "20.10.5",
-    "obsidian": "1.4.11",
-    "prettier": "^3.1.1",
-    "typescript": "5.3.3",
-    "vite": "5.0.10",
-    "vite-plugin-dts": "3.6.4",
-    "vitest": "^1.1.0"
-  },
-  "packageManager": "pnpm@10.5.2+sha512.da9dc28cd3ff40d0592188235ab25d3202add8a207afbedc682220e4a0029ffbff4562102b9e6e46b4e3f9e8bd53e6d05de48544b0c57d4b0179e22c76d1199b"
+	"$schema": "https://www.schemastore.org/package.json",
+	"name": "obsidian-search",
+	"version": "0.1.3",
+	"description": "",
+	"main": "dist/main.cjs",
+	"module": "dist/main.mjs",
+	"typings": "dist/main.d.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"import": "./dist/main.mjs",
+			"require": "./dist/main.cjs"
+		},
+		"./package.json": "./package.json"
+	},
+	"scripts": {
+		"fmt": "node ./scripts/fmt.js",
+		"lint": "oxlint .c ./scripts/oxlint.json",
+		"build": "node ./build.js",
+		"test:unit": "tsx --test ./src/**/*.test.ts",
+		"test:obsidian": "obsidian-test --setup ./scripts/test/obsidian.js",
+		"test:conform": "obsidian-test --setup ./scripts/test/conform.js",
+		"test": "pnpm test:unit & pnpm test:obsidian & pnpm test:conform"
+	},
+	"repository": {
+		"type": "git",
+		"url": "github.com/b-camphart/obsidian-search"
+	},
+	"keywords": [
+		"obsidian",
+		"search"
+	],
+	"author": "b-camphart",
+	"license": "ISC",
+	"devDependencies": {
+		"@stryker-mutator/vitest-runner": "^9.5.1",
+		"@types/node": "latest",
+		"obsidian": "latest",
+		"obsidian-test": "^0.1.2",
+		"oxlint": "^1.50.0",
+		"prettier": "latest",
+		"source-map": "^0.7.6",
+		"source-map-support": "^0.5.21",
+		"tree-kill": "^1.2.2",
+		"tsx": "^4.21.0",
+		"typescript": "latest",
+		"vite": "latest",
+		"vite-plugin-dts": "3.6.4",
+		"vitest": "latest",
+		"yaml": "^2.8.2"
+	},
+	"packageManager": "pnpm@10.32.1"
 }

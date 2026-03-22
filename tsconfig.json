@@ -2,19 +2,27 @@
     "compilerOptions": {
         "declaration": true,
         "declarationDir": "./dist",
+		"checkJs": true,
+		"resolveJsonModule": true,
         "module": "esnext",
         "target": "ESNext",
         "outDir": "./dist",
         "esModuleInterop": true,
-        "moduleResolution": "node",
+        "moduleResolution": "Bundler",
         "forceConsistentCasingInFileNames": true,
         "strict": true,
         "paths": {
             "src/*": ["./src/*"]
-        }
+        },
+		"types": [
+			"vitest/importMeta"
+		]
     },
     "include": [
-        "src/**/*.ts"
+        "src/**/*.ts",
+        "src/**/*.js",
+        "test/**/*.ts",
+        "test/**/*.js"
     ],
     "exclude": ["node_modules", "dist"]
 }

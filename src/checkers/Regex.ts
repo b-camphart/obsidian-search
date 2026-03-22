@@ -3,44 +3,47 @@ import { Or } from "./Or";
 import { StringChecker } from "./StringChecker";
 
 export function regex(
-    regex: TemplateStringsArray | string | RegExp,
-    matchCase: boolean = false
+	regex: TemplateStringsArray | string | RegExp,
+	matchCase: boolean = false,
 ): StringChecker {
-    if (typeof regex === "string" || regex instanceof RegExp) {
-        return new Regex(new RegExp(regex))
-    }
-    return new Regex(new RegExp(regex.join("")))
+	if (typeof regex === "string" || regex instanceof RegExp) {
+		return new Regex(new RegExp(regex));
+	}
+	return new Regex(new RegExp(regex.join("")));
 }
 
 export class Regex implements StringChecker {
+	private readonly regex: RegExp;
 
-    private readonly regex: RegExp;
+	constructor(
+		regex: RegExp,
 
-    constructor(
-        regex: RegExp,
+		matchCase: boolean = false,
+	) {
+		if (matchCase && regex.flags.includes("i")) {
+			this.regex = new RegExp(
+				regex,
+				regex.flags
+					.split("")
+					.filter((it) => it !== "i")
+					.join(""),
+			);
+		} else if (!matchCase && !regex.flags.includes("i")) {
+			this.regex = new RegExp(regex, regex.flags + "i");
+		} else {
+			this.regex = regex;
+		}
+	}
 
-        matchCase: boolean = false
-    ) {
-        if (matchCase && regex.flags.includes("i")) {
-            this.regex = new RegExp(regex, regex.flags.split("").filter(it => it !== "i").join(""))
-        }
-        else if (!matchCase && !regex.flags.includes("i")) {
-            this.regex = new RegExp(regex, regex.flags + "i")
-        } else {
-            this.regex = regex
-        }
-    }
+	matches(test: string): boolean {
+		return this.regex.test(test);
+	}
 
-    matches(test: string): boolean {
-        return this.regex.test(test)
-    }
+	or(checker: StringChecker): StringChecker {
+		return new Or(this, checker);
+	}
 
-    or(checker: StringChecker): StringChecker {
-        return new Or(this, checker)
-    }
-
-    and(checker: StringChecker): StringChecker {
-        return group(this, checker)
-    }
-
+	and(checker: StringChecker): StringChecker {
+		return group(this, checker);
+	}
 }
